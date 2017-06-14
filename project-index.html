@@ -12,14 +12,27 @@
         <h1>Find Some Hotspots!</h1>
         <div class="buttonsBox">
 
-          <input type="button" id="show-listings" value="Show Listings">
-          <input type="button" id="hide-listings" value="Hide Listings">
+
 
           <form>
-          <select data-bind="foreach: hotspots" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
-            <option data-bind="text: title,
-                              value: title"></option>
+          <select data-bind="options: markers,
+
+          optionsText: 'title',
+          value: chosenHotspot" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
           </select>
+
+          <button data-bind="enable: chosenHotspot,
+          click: sendMe">Clear</button>
+
+          <button data-bind="enable: chosenHotspot,
+          click: sendMe">Add Markers</button>
+
+          <p data-bind="with: chosenHotspot">
+            You have chosen:<br><b data-bind="text: title"></b>
+            <br>
+            (<span data-bind="text: location.lat" id="loclat"></span>),
+            (<span data-bind="text: location.lng" id="loclng"></span>)
+          </p>
         </form>
 
 
@@ -30,7 +43,8 @@
         </div>
       </div>
 
-    <div id="map" class="map"></div>
+    <div id="map" class="map" data-bind="markers"></div>
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihIVMZnbuCszRMz-ELrIgfT25wgUiv6k&v=3&callback=initMap"></script>
     <script> !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs"); </script>
     <script src="js/knockout-3.4.2.js"></script>

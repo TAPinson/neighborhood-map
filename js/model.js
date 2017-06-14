@@ -1,4 +1,3 @@
-
 function AppViewModel() {
   console.log('in AppViewModel');
   markers = [
@@ -9,25 +8,22 @@ function AppViewModel() {
     { title: 'Tennessee Performing Arts Center', location: {lat: 36.166156, lng: -86.776865}}
   ];
 
-
   map = ko.observable();
   this.chosenHotspot = ko.observable();
   this.resetHotspot = function() { this.chosenHotspot(null) }
+
 }
 
-ko.applyBindings(new AppViewModel());
+
 
 
 
 function initMap() {
   var nashville = {lat: 36.1527, lng: -86.7618};
-
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: nashville,
   });
-  // Adds a marker at the center of the map.
-  addMarker()
 }
 
 
@@ -41,12 +37,10 @@ function addMarker() {
     map: map
   });}
   markers.push(marker);
-  
 }
 
+function sendMe() {
+ { addMarker(this.chosenHotspot[1]); }
+}
 
-// This function will loop through the listings and hide them all.
-function hideMarkers() {
-  console.log("hiding markers...");
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].position.setMap(null);}}
+ko.applyBindings(new AppViewModel());
