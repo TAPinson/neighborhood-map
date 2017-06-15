@@ -16,19 +16,19 @@
 
           <form>
           <select data-bind="options: markers,
-
           optionsText: 'title',
-          value: chosenHotspot" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
+          value: chosenHotspot,
+          optionsCaption: 'Choose...',
+          event" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
           </select>
 
-          <button data-bind="enable: chosenHotspot,
-          click: sendMe">Clear</button>
-
-          <button data-bind="enable: chosenHotspot,
-          click: sendMe">Add Markers</button>
+          <button data-bind="click: ">Clear</button>
+          <button data-bind="click:  ">Add Markers</button>
 
           <p data-bind="with: chosenHotspot">
-            You have chosen:<br><b data-bind="text: title"></b>
+            You have chosen:<br><b data-bind="text: title,
+                                              value: id
+                                              event:{ click: addMarker}"></b>
             <br>
             (<span data-bind="text: location.lat" id="loclat"></span>),
             (<span data-bind="text: location.lng" id="loclng"></span>)
@@ -43,7 +43,7 @@
         </div>
       </div>
 
-    <div id="map" class="map" data-bind="markers"></div>
+    <div id="map" class="map" data-bind="with: markers"></div>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihIVMZnbuCszRMz-ELrIgfT25wgUiv6k&v=3&callback=initMap"></script>
     <script> !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs"); </script>
