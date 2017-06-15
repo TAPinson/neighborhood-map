@@ -11,28 +11,32 @@
       <div class="options-box">
         <h1>Find Some Hotspots!</h1>
         <div class="buttonsBox">
-
-
+          <input id="hide-listings" type="button" value="Hide Listings">
+          <input id="show-listings" type="button" value="Show Listings">
 
           <form>
-          <select data-bind="options: markers,
-          optionsText: 'title',
-          value: chosenHotspot,
-          optionsCaption: 'Choose...',
-          event" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
+
+          <select data-bind="options: locations,
+                             optionsText: 'title',
+                             value: chosenHotspot,
+                             optionsCaption: 'Choose...',
+                             event:{ click: showListings}" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
           </select>
 
-          <button data-bind="click: ">Clear</button>
-          <button data-bind="click:  ">Add Markers</button>
 
           <p data-bind="with: chosenHotspot">
-            You have chosen:<br><b data-bind="text: title,
-                                              value: id
-                                              event:{ click: addMarker}"></b>
-            <br>
+            Proof of JSON:
+            <br>Title:
+            <b data-bind="text: title"></b>
+            <br>Location:
             (<span data-bind="text: location.lat" id="loclat"></span>),
             (<span data-bind="text: location.lng" id="loclng"></span>)
+            <br>id:
+            <span data-bind="text: id" id="idBox"></span><br>
+            <span data-bind="text: tweets" id="tweetsBox"></span>
+
           </p>
+
         </form>
 
 

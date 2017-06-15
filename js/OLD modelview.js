@@ -2,7 +2,7 @@ $( ".buttonsBox" ).append( "<div class='instructions'>" + "Choose a marker to se
 
 
 
-
+{ click: addMarker}
 
 
 
