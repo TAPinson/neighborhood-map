@@ -5,11 +5,11 @@ var markers = [];
 
 
 var ViewModel = function(map, markers) {
-  zooTweets = "<a class='twitter-timeline' href='https://www.twitter.com/hashtag/NashvilleZoo' data-widget-id='868900216082190336'>";
-  scienceTweets = "<a class='twitter-timeline' href='https://twitter.com/search?q=adventure%20science%20center' data-widget-id='868889405167194112'>";
-  parthenonTweets = "<a class='twitter-timeline href='https://twitter.com/search?q=%23nashville%20%23parthenon' data-widget-id='868899128100753408'>";
-  bridgestoneTweets = "<a class='twitter-timeline' href='https://twitter.com/hashtag/BridgestoneArena' data-widget-id='868898437907042304'>";
-  tpacTweets = "<a class='twitter-timeline' href='https://twitter.com/hashtag/TPAC' data-widget-id='869261143428259840'>";
+  zooTweets = "<a class='twitter-timeline' href='https://www.twitter.com/hashtag/NashvilleZoo' data-widget-id='868900216082190336'>Tweets</a>";
+  scienceTweets = "<a class='twitter-timeline' href='https://twitter.com/search?q=adventure%20science%20center' data-widget-id='868889405167194112'>Tweets</a>";
+  parthenonTweets = "<a class='twitter-timeline href='https://twitter.com/search?q=%23nashville%20%23parthenon' data-widget-id='868899128100753408'>Tweets</a>";
+  bridgestoneTweets = "<a class='twitter-timeline' href='https://twitter.com/hashtag/BridgestoneArena' data-widget-id='868898437907042304'>Tweets</a>";
+  tpacTweets = "<a class='twitter-timeline' href='https://twitter.com/hashtag/TPAC' data-widget-id='869261143428259840'>Tweets</a>";
   locations = [
   { title: 'Bridgestone Arena', location: {lat: 36.1592, lng: -86.7785}, id: 0, tweets: bridgestoneTweets},
   { title: 'Nashville Zoo', location: {lat: 36.1392, lng: -86.7415}, id: 1, tweets: zooTweets },
@@ -91,19 +91,19 @@ function populateInfoWindow(marker, infowindow) {
     infowindow.marker = "marker";
     infowindow.setContent(tweetsOpen);
     if (marker.title == locations[1].title) {
-      infowindow.setContent(tweetsOpen + zooTweets + tweetsClose);
+      infowindow.setContent(tweetsOpen + zooTweets);
       twttr.widgets.load(document.getElementById("infobox"))};
     if (marker.title == "Adventure Science Center") {
-      infowindow.setContent(tweetsOpen + scienceTweets + tweetsClose);
+      infowindow.setContent(tweetsOpen + scienceTweets);
       twttr.widgets.load(document.getElementById("infobox"))};
     if (marker.title == "The Parthenon") {
-      infowindow.setContent(tweetsOpen + parthenonTweets + tweetsClose);
+      infowindow.setContent(tweetsOpen + parthenonTweets);
       twttr.widgets.load(document.getElementById("infobox"));}
     if (marker.title == "Bridgestone Arena") {
-      infowindow.setContent(tweetsOpen + bridgestoneTweets + tweetsClose);
+      infowindow.setContent(tweetsOpen + bridgestoneTweets);
       twttr.widgets.load(document.getElementById("infobox"));}
     if (marker.title == "Tennessee Performing Arts Center") {
-      infowindow.setContent(tweetsOpen + tpacTweets + tweetsClose);
+      infowindow.setContent(tweetsOpen + tpacTweets);
       twttr.widgets.load(document.getElementById("infobox"));};
     infowindow.open(map, marker);
     // Make sure the marker property is cleared if the infowindow is closed.
