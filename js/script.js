@@ -58,32 +58,28 @@ function initMap() {
 
 // This function will loop through the markers array and display them all.
 function showListings() {
+  
   var bounds = new google.maps.LatLngBounds();
+  var id = document.getElementById("idBox").innerHTML;
   // Extend the boundaries of the map for each marker and display the marker
   for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(map);
+    markers[id].setMap(map);
     bounds.extend(markers[i].position);}
   map.fitBounds(bounds);}
 
 
   function showOneListing() {
     console.log('aaaaaa');
-    var bounds = new google.maps.LatLngBounds();
-
-    // Extend the boundaries of the map for each marker and display the marker
+    var id = document.getElementById("idBox").innerHTML;
     for (var i = 0; i < markers.length; i++) {
-    console.log('bbbbb');
-      if  (this.chosenHotspot == locations[i]) {
-        console.log('chosenHotspot');
-        markers[i].setVisible(true);}
-      if (this.chosenHotspot != locations[i]) {
-        console.log(this.chosenHotspot + "!=" + locations[i].id);
-        markers[i].setVisible(false);
+      if  (id != locations[i].id) {
+        markers[id].setVisible(false);
+        bounds.extend(markers[id].position);
+        map.fitBounds(bounds);
       }
-    console.log('fffff');
-    map.fitBounds(bounds);
-    console.log('ggggg');
-  }}
+    }
+  }
+
 
 
 
@@ -133,6 +129,7 @@ var Loc = function(data, map) {
   var self = this;
   self.title = ko.observable(data.title);
   self.location = ko.observable(data.location);
+
   };
 
 // test purposes only - replace for final product
@@ -148,7 +145,7 @@ document.getElementById('hide-listings').addEventListener('click', function() {
 
 
 
-ko.applyBindings(new ViewModel)
+ko.applyBindings(new ViewModel);
 
 
 

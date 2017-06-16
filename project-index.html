@@ -12,18 +12,13 @@
         <h1>Find Some Hotspots!</h1>
         <div class="buttonsBox">
           <input id="hide-listings" type="button" value="Hide Listings">
-          
-
           <form>
-
           <select data-bind="options: locations,
                              optionsText: 'title',
                              value: chosenHotspot,
                              optionsCaption: 'Choose...',
-                             event:{ click: showListings}" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
+                             event:{ change: showListings}" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
           </select>
-
-
           <p data-bind="with: chosenHotspot">
             Details:
             <br>Title:
@@ -33,26 +28,16 @@
             (<span data-bind="text: location.lng" id="loclng"></span>)
             <br>id:
             <span data-bind="text: id" id="idBox"></span><br>
-            <span data-bind="text: tweets" id="tweetsBox"></span>
-
           </p>
-
         </form>
-
-
-
           <hr>
           <div class="tweets-section" id="tweets-section"></div>
-
         </div>
       </div>
-
     <div id="map" class="map" data-bind="with: markers"></div>
-
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihIVMZnbuCszRMz-ELrIgfT25wgUiv6k&v=3&callback=initMap"></script>
     <script> !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs"); </script>
     <script src="js/knockout-3.4.2.js"></script>
     <script src="js/script.js"></script>
-
   </body>
 </html>
