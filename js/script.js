@@ -22,7 +22,7 @@ var ViewModel = function(map, markers) {
 
 }
 
-ko.applyBindings(new ViewModel)
+
 
 
 function initMap() {
@@ -66,9 +66,25 @@ function showListings() {
   map.fitBounds(bounds);}
 
 
-function showOneListing() {
-  alert("Hello! I am an alert box!!");
-}
+  function showOneListing() {
+    console.log('aaaaaa');
+    var bounds = new google.maps.LatLngBounds();
+
+    // Extend the boundaries of the map for each marker and display the marker
+    for (var i = 0; i < markers.length; i++) {
+    console.log('bbbbb');
+      if  (this.chosenHotspot == locations[i]) {
+        console.log('chosenHotspot');
+        markers[i].setVisible(true);}
+      if (this.chosenHotspot != locations[i]) {
+        console.log(this.chosenHotspot + "!=" + locations[i].id);
+        markers[i].setVisible(false);
+      }
+    console.log('fffff');
+    map.fitBounds(bounds);
+    console.log('ggggg');
+  }}
+
 
 
 // This function will loop through the listings and hide them all.
@@ -120,7 +136,7 @@ var Loc = function(data, map) {
   };
 
 // test purposes only - replace for final product
-document.getElementById('show-listings').addEventListener('click', showListings);
+
 document.getElementById('hide-listings').addEventListener('click', function() {
   hideMarkers(markers);});
 
@@ -132,7 +148,7 @@ document.getElementById('hide-listings').addEventListener('click', function() {
 
 
 
-
+ko.applyBindings(new ViewModel)
 
 
 
