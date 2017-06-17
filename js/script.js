@@ -58,7 +58,7 @@ function initMap() {
 
 // This function will loop through the markers array and display them all.
 function showListings() {
-  
+
   var bounds = new google.maps.LatLngBounds();
   var id = document.getElementById("idBox").innerHTML;
   // Extend the boundaries of the map for each marker and display the marker
@@ -73,9 +73,11 @@ function showListings() {
     var id = document.getElementById("idBox").innerHTML;
     for (var i = 0; i < markers.length; i++) {
       if  (id != locations[i].id) {
+
         markers[id].setVisible(false);
         bounds.extend(markers[id].position);
         map.fitBounds(bounds);
+
       }
     }
   }
@@ -96,7 +98,6 @@ function hideMarkers(markers) {
 function populateInfoWindow(marker, infowindow) {
   var tweetsOpen = '<div>' + marker.title + '</div>';
 
-  var tweetsClose = "Tweets" + "</a>"
 
   // Check to make sure the infowindow is not already opened on this marker.
   if (infowindow.marker != marker) {
@@ -125,12 +126,7 @@ function populateInfoWindow(marker, infowindow) {
 // END OF GOOGLE MAP RENDERING //
 
 
-var Loc = function(data, map) {
-  var self = this;
-  self.title = ko.observable(data.title);
-  self.location = ko.observable(data.location);
 
-  };
 
 // test purposes only - replace for final product
 
