@@ -1,4 +1,6 @@
+// Initialize the map
 var map;
+
 
 // Create a new blank array for all the listing markers.
 var markers = [];
@@ -19,10 +21,7 @@ var ViewModel = function(map, markers) {
   this.locList = ko.observableArray([]);
   this.chosenHotspot = ko.observable();
   this.currentLoc = ko.observable( this.locList()[0] );
-
 }
-
-
 
 
 function initMap() {
@@ -49,8 +48,10 @@ function initMap() {
     markers.push(marker);
     // Create an onclick event to open an infowindow at each marker.
     marker.addListener('click', function() {
-      populateInfoWindow(this, largeInfowindow);});
-    bounds.extend(markers[i].position);}
+      populateInfoWindow(this, largeInfowindow);
+    });
+    bounds.extend(markers[i].position);
+  }
   // Extend the boundaries of the map for each marker
   map.fitBounds(bounds);
 }
@@ -58,31 +59,26 @@ function initMap() {
 
 // This function will loop through the markers array and display them all.
 function showListings() {
-
   var bounds = new google.maps.LatLngBounds();
   var id = document.getElementById("idBox").innerHTML;
   // Extend the boundaries of the map for each marker and display the marker
   for (var i = 0; i < markers.length; i++) {
     markers[id].setMap(map);
     bounds.extend(markers[i].position);}
-  map.fitBounds(bounds);}
+  map.fitBounds(bounds);
+}
 
 
   function showOneListing() {
-    console.log('aaaaaa');
     var id = document.getElementById("idBox").innerHTML;
     for (var i = 0; i < markers.length; i++) {
       if  (id != locations[i].id) {
-
         markers[id].setVisible(false);
         bounds.extend(markers[id].position);
         map.fitBounds(bounds);
-
       }
     }
   }
-
-
 
 
 // This function will loop through the listings and hide them all.
@@ -91,14 +87,11 @@ function hideMarkers(markers) {
     markers[i].setMap(null);}}
 
 
-
 // This function populates the infowindow when the marker is clicked. We'll only allow
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
 function populateInfoWindow(marker, infowindow) {
   var tweetsOpen = '<div>' + marker.title + '</div>';
-
-
   // Check to make sure the infowindow is not already opened on this marker.
   if (infowindow.marker != marker) {
     infowindow.marker = "marker";
@@ -126,25 +119,7 @@ function populateInfoWindow(marker, infowindow) {
 // END OF GOOGLE MAP RENDERING //
 
 
-
-
-// test purposes only - replace for final product
-
-document.getElementById('hide-listings').addEventListener('click', function() {
-  hideMarkers(markers);});
-
-
-
-
-
-
-
-
-
 ko.applyBindings(new ViewModel);
-
-
-
 
 
 // API IMPORT FROM TWITTER //
