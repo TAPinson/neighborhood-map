@@ -85,6 +85,14 @@ hr {
   width: 24%;
 }
 
+.wikipedia-container {
+  border-style: groove;
+}
+
+.chosenHotspot{
+  border-style: groove;
+}
+
 .instructions {
   text-align: center;
   padding-right: 2%;
@@ -100,4 +108,20 @@ hr {
 
 .twitter-timeline {
     max-width: 50%;
+}
+
+.idBox {
+  position: absolute;
+  right: 0px;
+
+}
+
+
+.fsqBox {
+  position: absolute;
+  right: 0px;
+}
+
+.buttonsBox {
+  border-style: groove;
 }

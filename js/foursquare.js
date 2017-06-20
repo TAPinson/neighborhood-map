@@ -1,5 +1,4 @@
 /**********FourSquare***************/
-
 function foursquareLoad() {
 var $names = $('#names');
 $names.text("");
@@ -12,20 +11,20 @@ var fsqUrl = "https://api.foursquare.com/v2/venues/"+
               "&client_secret=O2FJ2QOLXEY0Z41TTVZNCQSBQZRP2BB25LNL1RWA2UA2LM3M" +
               "&v=20162016"
 
-
-
-
 $.ajax({
     url: fsqUrl,
     dataType: "jsonp",
     jsonp: "callback",
     success:
-
     function(response) {
+      var data = response.response.venues[0];
       console.log(response.response.venues[0].name);
-      console.log(response);
-      content = '<p> Checked in: ' + response + '<br>' + '</p>';
+      console.log(data);
+      content = '<p> Location: ' + data.name + '<br>' + '</p>' +
+                '<p> Checked In: ' + data.hereNow.count + '</p>' +
+                '<p> Phone: ' + data.contact.formattedPhone + '</p>'
+
       $(content).appendTo("#names");
         }
-
-})}
+      })
+    }

@@ -19,9 +19,9 @@
 
           <p data-bind="with: chosenHotspot">
             <b data-bind="text: title, value: loadData() + foursquareLoad()" id="titleBox"></b>
-            <br>id:
-            <span data-bind="text: id" id="idBox"></span><br>
-            <span data-bind="text: foursquare" id="fsqBox"></span><br>
+            <br>
+            <span data-bind="text: id" id="idBox" class="idBox"></span>
+            <span data-bind="text: foursquare" id="fsqBox" class="fsqBox"></span>
           </div>
           <div class="wikipedia-container">
               <h3 id="wikipedia-header">Wikipedia:</h3>
@@ -29,7 +29,7 @@
           </div>
           </p>
         </form>
-        <div id="names"></div>
+        <div id="names" class="chosenHotspot"></div>
         <hr>
     </div>
   </div>
