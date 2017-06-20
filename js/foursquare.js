@@ -24,11 +24,8 @@ $.ajax({
     function(response) {
       console.log(response.response.venues[0].name);
       console.log(response);
-      $.each(response, function(response){
-          console.log(response);
+      content = '<p> Checked in: ' + response + '<br>' + '</p>';
+      $(content).appendTo("#names");
+        }
 
-          content = '<p> Checked in: ' + response + '<br>' + '</p>';
-          $(content).appendTo("#names");
-        })
-
-}})}
+})}
