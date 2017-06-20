@@ -10,35 +10,61 @@
     <div class="container">
       <div class="options-box">
         <h1>Find Some Hotspots!</h1>
+
         <div class="buttonsBox">
-          
           <input data-bind="click: hideMarkers(markers)" type="button" value="Hide Listings">
           <form>
+
           <select data-bind="options: locations,
                              optionsText: 'title',
                              value: chosenHotspot,
                              optionsCaption: 'Choose...',
                              event:{ change: showListings}" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
+
           </select>
+
+
+          <div class="wikipedia-container">
+              <h3 id="wikipedia-header">Wikipedia:</h3>
+              <ul id="wikipedia-links">Select a marker above and find relevant Wikipedia articles here!</ul>
+          </div>
+
           <p data-bind="with: chosenHotspot">
-            Details:
-            <br>Title:
-            <b data-bind="text: title"></b>
-            <br>Location:
-            (<span data-bind="text: location.lat" id="loclat"></span>),
-            (<span data-bind="text: location.lng" id="loclng"></span>)
+
+          
+            <b data-bind="text: title, value: loadData()" id="titleBox"></b>
+
             <br>id:
             <span data-bind="text: id" id="idBox"></span><br>
+
+
+
+          </div>
+
           </p>
+
         </form>
         <hr>
-        <div class="tweets-section" id="tweets-section"></div>
-        </div>
-      </div>
+
+
+
+    </div>
+
+  </div>
+
+
+
+    <div id="tweetsBox"></div>
+
+
+
     <div id="map" class="map" data-bind="with: markers"></div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihIVMZnbuCszRMz-ELrIgfT25wgUiv6k&v=3&callback=initMap"></script>
     <script> !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs"); </script>
+
     <script src="js/knockout-3.4.2.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/script.js"></script>
+
   </body>
 </html>
