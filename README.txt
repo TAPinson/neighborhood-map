@@ -15,6 +15,12 @@ Usage:
 -Open index.html with your default browser
 
 
+Attribution:
+- Developed with the Foursquare developers API.
+- Developed with Twitter developers widgets.
+
+
+
 About the Developer:
 Developer: Travis Pinson
 Contact: travispinson@gmail.com
