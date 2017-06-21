@@ -87,9 +87,10 @@ hr {
 
 .wikipedia-container {
   border-style: groove;
-  padding-left: 2%;
-  padding-right: 2%;
+  text-align: center;
+
   margin-top: 5%;
+
 }
 
 .chosenHotspot{
@@ -118,9 +119,12 @@ hr {
 .idBox {
   position: absolute;
   right: 0px;
-
 }
 
+.titleBox {
+  position: absolute;
+  right: 0px; 
+}
 
 .fsqBox {
   position: absolute;

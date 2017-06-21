@@ -18,19 +18,21 @@
           </select>
 
           <p data-bind="with: chosenHotspot">
-            <b data-bind="text: title, value: loadData() + foursquareLoad()" id="titleBox"></b>
+            <b data-bind="text: title,
+                          value: id,
+                          click: loadData()" id="titleBox"></b>
             <br>
             <span data-bind="text: id" id="idBox" class="idBox"></span>
-            <span data-bind="text: location.lat + ',' + location.lng" id="locBox" class="locBox"></span>
-            <span data-bind="text: foursquare" id="fsqBox" class="fsqBox"></span>
+
           </div>
           <div class="wikipedia-container">
-              <h3 id="wikipedia-header">Wikipedia:</h3>
-              <ul id="wikipedia-links">Select a marker above and find relevant Wikipedia articles here!</ul>
+
+              <div id="wikipedia-links">Select a marker above and find relevant Wikipedia articles here!</div>
           </div>
+          <!-- <div id="names" class="chosenHotspot"><h3>Foursquare</h3> Select a marker above and relevant foursquare information will show here!</div> -->
+
           </p>
         </form>
-        <div id="names" class="chosenHotspot"><h3>Foursquare</h3> Select a marker above and relevant foursquare information will show here!</div>
         <hr>
     </div>
   </div>
@@ -39,9 +41,11 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihIVMZnbuCszRMz-ELrIgfT25wgUiv6k&v=3&callback=initMap"></script>
     <script src="js/knockout-3.4.2.js"></script>
     <script src="js/jquery.min.js"></script>
+    <script src="js/viewmodel.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/foursquare.js"></script>
-    <script src="js/wikipedia.js"></script>
     <script src="js/twitter.js"></script>
+    <script src="js/wikipedia.js"></script>
+
+
   </body>
 </html>

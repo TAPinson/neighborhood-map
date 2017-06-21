@@ -3,13 +3,16 @@ function foursquareLoad() {
   for (var i = 0; i < markers.length; i++) {
     var $names = $('#names');
     $names.text("");
-    if (markers[i].id == locations[i].id) {
-    var fsqUrl = "https://api.foursquare.com/v2/venues/"+
-              "search?ll=" + locations[i].location.lat +","+ locations[i].location.lng +
-              "&query=" + locations[i].title +
-              "&client_id=S3ODC4ML2SGHVY2H1K03NTC3EFA5RFGQIAXJKHI4LRTBUSG5" +
-              "&client_secret=O2FJ2QOLXEY0Z41TTVZNCQSBQZRP2BB25LNL1RWA2UA2LM3M" +
-              "&v=20162016"
+    var id = document.getElementById('idBox').innerHTML;
+    if (id == locations[i].id) {
+
+
+      var fsqUrl = "https://api.foursquare.com/v2/venues/"+
+                   "search?ll=" + locations[i].location.lat +","+ locations[i].location.lng +
+                   "&query=" + locations[i].title +
+                   "&client_id=S3ODC4ML2SGHVY2H1K03NTC3EFA5RFGQIAXJKHI4LRTBUSG5" +
+                   "&client_secret=O2FJ2QOLXEY0Z41TTVZNCQSBQZRP2BB25LNL1RWA2UA2LM3M" +
+                   "&v=20162016";
 
     $.ajax({
       url: fsqUrl,
