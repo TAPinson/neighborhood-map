@@ -70,20 +70,69 @@ function hideMarkers(markers) {
 // on that markers position.
 function populateInfoWindow(marker, infowindow) {
   var infoMarker = infowindow.marker;
-  var tweetsOpen = '<div>' + marker.title + '<p>Click marker again to load recent tweets here!</div>';
+
+
+
+
+
+
   // Check to make sure the infowindow is not already opened on this marker.
   if (infoMarker != marker) {
-    infoMarker = "marker";
-    infowindow.setContent(tweetsOpen);
-    for (var i = 0; i < markers.length; i++)
-    if (marker.title == locations[i].title) {
-      infowindow.setContent(tweetsOpen + locations[i].tweets);
-      twttr.widgets.load(document.getElementById("infobox"))};
-    infowindow.open(map, marker);
-    // Make sure the marker property is cleared if the infowindow is closed.
-    infowindow.addListener('closeclick',function(){
-      infowindow.setMarker = null;
-    });}}
+
+
+
+
+
+
+    // load wikipedia data
+    var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + document.getElementById('titleBox').innerHTML + '&format=json&callback=wikiCallback';
+    var wikiRequestTimeout = setTimeout(function(){
+      $wikiElem.text("failed to get wikipedia resources");
+    }, 6000);
+
+    $.ajax({
+      url: wikiUrl,
+      dataType: "jsonp",
+      jsonp: "callback",
+      success: function( response ) {
+        var articleList = response[1];
+        var artileDesc = response[2];
+        for (var i = 0; i < articleList.length; i++) {
+          articleStr = articleList[i];
+          var url = 'http://en.wikipedia.org/wiki/' + articleStr;
+          var placer = '<a href="' + url + '"><h3>' + articleStr + '</h3></a> <p>' + artileDesc;
+          console.log(placer);
+          infoMarker = "marker";
+          infowindow.setContent('information displayed here');
+          for (var i = 0; i < markers.length; i++)
+          if (marker.title == locations[i].title) {
+            infowindow.setContent(placer + '<p>' + locations[i].tweets);
+            twttr.widgets.load(document.getElementById("infobox"))
+          };
+          infowindow.open(map, marker);
+          // Make sure the marker property is cleared if the infowindow is closed.
+          infowindow.addListener('closeclick',function(){
+            infowindow.setMarker = null;
+          });
+        }
+      }
+    });
+    clearTimeout(wikiRequestTimeout);
+  }
+  return false;
+;}
+
+
+
+
+
+
+
+
+
+
+
+
 // END OF GOOGLE MAP RENDERING //
 
 
