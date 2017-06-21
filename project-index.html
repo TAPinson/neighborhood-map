@@ -21,6 +21,7 @@
             <b data-bind="text: title, value: loadData() + foursquareLoad()" id="titleBox"></b>
             <br>
             <span data-bind="text: id" id="idBox" class="idBox"></span>
+            <span data-bind="text: location.lat + ',' + location.lng" id="locBox" class="locBox"></span>
             <span data-bind="text: foursquare" id="fsqBox" class="fsqBox"></span>
           </div>
           <div class="wikipedia-container">
@@ -29,7 +30,7 @@
           </div>
           </p>
         </form>
-        <div id="names" class="chosenHotspot"></div>
+        <div id="names" class="chosenHotspot"><h3>Foursquare</h3> Select a marker above and relevant foursquare information will show here!</div>
         <hr>
     </div>
   </div>

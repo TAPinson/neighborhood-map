@@ -8,7 +8,7 @@ var markers = [];
 
 var ViewModel = function(map, markers) {
   locations = [
-  { title: 'Bridgestone Arena', location: {lat: 36.1592, lng: -86.7785}, id: 0, tweets: "<a class='twitter-timeline' href='https://twitter.com/hashtag/BridgestoneArena' data-widget-id='868898437907042304'>Tweets</a>", foursquare: '4b8c3d87f964a520f7c532e3'},
+  { title: 'Bridgestone Arena', location: {lat: 36.15, lng: -86.77}, id: 0, tweets: "<a class='twitter-timeline' href='https://twitter.com/hashtag/BridgestoneArena' data-widget-id='868898437907042304'>Tweets</a>", foursquare: '4b8c3d87f964a520f7c532e3'},
   { title: 'Nashville Zoo', location: {lat: 36.1392, lng: -86.7415}, id: 1, tweets: "<a class='twitter-timeline' href='https://www.twitter.com/hashtag/NashvilleZoo' data-widget-id='868900216082190336'>Tweets</a>", foursquare: '4b05866bf964a520446122e3'},
   { title: 'Nashville Parthenon', location: {lat: 36.1497, lng: -86.8133}, id: 2, tweets: "<a class='twitter-timeline' href='https://twitter.com/search?q=%23nashville%20%23parthenon' data-widget-id='868899128100753408'>Tweets</a>", foursquare: '4b05866bf964a520456122e3'},
   { title: 'Adventure Science Center', location: {lat: 36.1465, lng: -86.7754}, id: 3, tweets: "<a class='twitter-timeline' href='https://twitter.com/search?q=adventure%20science%20center' data-widget-id='868889405167194112'>Tweets</a>", foursquare: '4b05866bf964a5203e6122e3'},
