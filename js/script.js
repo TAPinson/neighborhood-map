@@ -26,7 +26,6 @@ function initMap() {
     });
     bounds.extend(markers[i].position);
   }
-  // Extend the boundaries of the map for each marker
   map.fitBounds(bounds);
 }
 
@@ -67,11 +66,9 @@ function hideMarkers(markers) {
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
 function populateInfoWindow(marker, infowindow) {
-
+  // Set markers to bounce when clicked. One bounce takes 750ms, so we'll time it out at 750
   marker.setAnimation(google.maps.Animation.BOUNCE);
   setTimeout(function(){ marker.setAnimation(null); }, 750)
-  
-
   var infoMarker = infowindow.marker;
   // load wikipedia data
   var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
