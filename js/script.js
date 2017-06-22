@@ -1,11 +1,10 @@
 function initMap() {
-  // Constructor creates a new map - only center and zoom are required.
   map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 36.1527, lng: -86.7618},
         zoom: 13});
   var largeInfowindow = new google.maps.InfoWindow();
   var bounds = new google.maps.LatLngBounds();
-  // The following group uses the location array to create an array of markers on initialize.
+  // The following group uses the locations array from viewmodel to create an array of markers on initialize.
   for (var i = 0; i < locations.length; i++) {
     // Get the position from the location array.
     var position = locations[i].location;
@@ -37,8 +36,9 @@ function showListings() {
   // Extend the boundaries of the map for each marker and display the marker
   for (var i = 0; i < markers.length; i++) {
     markers[id].setMap(map);
-    bounds.extend(markers[i].position);}
-  map.fitBounds(bounds);
+    bounds.extend(markers[i].position);
+    }
+    map.fitBounds(bounds);
 }
 
 
@@ -68,14 +68,18 @@ function hideMarkers(markers) {
 function populateInfoWindow(marker, infowindow) {
   // Set markers to bounce when clicked. One bounce takes 750ms, so we'll time it out at 750
   marker.setAnimation(google.maps.Animation.BOUNCE);
-  setTimeout(function(){ marker.setAnimation(null); }, 750)
+  setTimeout(function() { 
+  	marker.setAnimation(null);
+  }, 750)
+  // shorten infowindow.marker
   var infoMarker = infowindow.marker;
-  // load wikipedia data
+  // Information for requesting data from wikipedia
   var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+  // set six second timer in case of connection issues
   var wikiRequestTimeout = setTimeout(function(){
     alert("Communication with Wikipedia has failed.");
   }, 6000);
-
+  // Get wikipedia data
   $.ajax({
     url: wikiUrl,
     dataType: "jsonp",
@@ -98,6 +102,5 @@ function populateInfoWindow(marker, infowindow) {
 }
 
 // END OF GOOGLE MAP RENDERING //
-
 
 ko.applyBindings(new ViewModel);

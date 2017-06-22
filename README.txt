@@ -5,6 +5,9 @@ Requirements:
 -Any current web browser
 -GIT installed
 
+Libraries:
+- Knockout.js
+- jQuery
 
 Installation:
 -From the terminal, clone the following repository to your home folder:
@@ -18,7 +21,8 @@ Usage:
 
 
 Attribution:
-- Map built with Google Maps API.
+- Map built with Google Maps API and Udacity Full Stack Nanodegree Program lesson: 
+	"The Frontend: Javascript and AJAX"
 - Data populating infowindow of markers provided by Wikipedia API.
 - Marker bounce on click functionality implemented with information provided at:
 	url: https://stackoverflow.com/questions/7339200/bounce-a-pin-in-google-maps-once
