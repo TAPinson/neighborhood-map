@@ -14,12 +14,12 @@
                              optionsText: 'title',
                              value: chosenHotspot,
                              optionsCaption: 'Choose...',
-                             event:{ change: showListings}" id="locations-list" class="location-list"> LOCATION DROPDOWN BOX
+                             event:{ change: showListings}" class="location-list"> LOCATION DROPDOWN BOX
           </select>
 
           <p data-bind="with: chosenHotspot">
             <b data-bind="text: title,
-                          value: id" id="titleBox"></b>
+                          value: id"></b>
             <br>
             <span data-bind="text: id" id="idBox" class="idBox"></span>
 

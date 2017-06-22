@@ -1,5 +1,3 @@
-
-
 function initMap() {
   // Constructor creates a new map - only center and zoom are required.
   map = new google.maps.Map(document.getElementById('map'), {
@@ -70,71 +68,34 @@ function hideMarkers(markers) {
 // on that markers position.
 function populateInfoWindow(marker, infowindow) {
   var infoMarker = infowindow.marker;
+  // load wikipedia data
+  var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+  var wikiRequestTimeout = setTimeout(function(){
+    alert("Communication with Wikipedia has failed.");
+  }, 6000);
 
-
-
-
-
-
-  // Check to make sure the infowindow is not already opened on this marker.
-  if (infoMarker != marker) {
-
-
-
-
-
-
-    // load wikipedia data
-    var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + document.getElementById('titleBox').innerHTML + '&format=json&callback=wikiCallback';
-    var wikiRequestTimeout = setTimeout(function(){
-      $wikiElem.text("failed to get wikipedia resources");
-    }, 6000);
-
-    $.ajax({
-      url: wikiUrl,
-      dataType: "jsonp",
-      jsonp: "callback",
-      success: function( response ) {
-        var articleList = response[1];
-        var artileDesc = response[2];
-        for (var i = 0; i < articleList.length; i++) {
-          articleStr = articleList[i];
-          var url = 'http://en.wikipedia.org/wiki/' + articleStr;
-          var placer = '<a href="' + url + '"><h3>' + articleStr + '</h3></a> <p>' + artileDesc;
-          console.log(placer);
-          infoMarker = "marker";
-          infowindow.setContent('information displayed here');
-          for (var i = 0; i < markers.length; i++)
-          if (marker.title == locations[i].title) {
-            infowindow.setContent(placer + '<p>' + locations[i].tweets);
-            twttr.widgets.load(document.getElementById("infobox"))
-          };
-          infowindow.open(map, marker);
-          // Make sure the marker property is cleared if the infowindow is closed.
-          infowindow.addListener('closeclick',function(){
-            infowindow.setMarker = null;
-          });
-        }
-      }
-    });
-    clearTimeout(wikiRequestTimeout);
-  }
-  return false;
-;}
-
-
-
-
-
-
-
-
-
-
-
+  $.ajax({
+    url: wikiUrl,
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function( data ) {
+      var wikiTitle = data[1];
+      var wikiDesc = data[2];
+      var wikiMarkerUrl = data[3];
+      infowindow.open(map, marker);
+      infowindow.setContent('<b>' + wikiTitle + '</b><p>' +
+                            wikiDesc + '<p>' +
+                            '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>');
+      // Make sure the marker property is cleared if the infowindow is closed.
+      infowindow.addListener('closeclick',function(){
+        infowindow.setMarker = null;
+      });
+      clearTimeout(wikiRequestTimeout);
+    }
+  })
+}
 
 // END OF GOOGLE MAP RENDERING //
-
 
 
 ko.applyBindings(new ViewModel);

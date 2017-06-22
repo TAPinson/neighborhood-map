@@ -108,25 +108,7 @@ hr {
   margin-top: 75%;
 }
 
-.twitter-timeline-rendered {
-    max-width: 50%;
-}
-
-.twitter-timeline {
-    max-width: 50%;
-}
-
 .idBox {
-  position: absolute;
-  right: 0px;
-}
-
-.titleBox {
-  position: absolute;
-  right: 0px; 
-}
-
-.fsqBox {
   position: absolute;
   right: 0px;
 }
