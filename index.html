@@ -6,39 +6,28 @@
   <body>
     <div class="container">
       <div class="options-box">
-        <h1>Find Some Hotspots!</h1>
+        <h1>Neighborhood Map</h1>
         <div class="buttonsBox">
           <input data-bind="click: hideMarkers(markers)" type="button" value="Hide Listings">
           <form>
-          <select data-bind="options: locations,
-                             optionsText: 'title',
-                             value: chosenHotspot,
-                             optionsCaption: 'Choose...',
-                             event:{ change: showListings}" class="location-list"> LOCATION DROPDOWN BOX
-          </select>
-
-          <p data-bind="with: chosenHotspot">
-            <b data-bind="text: title,
-                          value: id"></b>
-            <br>
-            <span data-bind="text: id" id="idBox" class="idBox"></span>
-
-          </div>
-          </p>
-        </form>
+            <select data-bind="options: locations,
+                               optionsText: 'title',
+                               value: chosenHotspot,
+                               optionsCaption: 'Choose...',
+                               event:{ change: showListings}" class="location-list"> LOCATION DROPDOWN BOX
+            </select>
+            <p data-bind="with: chosenHotspot">
+              <span data-bind="text: id" id="idBox" class="idBox"></span></p>
+          </form>
+        </div>
         <hr>
+      </div>
     </div>
-  </div>
-
     <div id="map" class="map" data-bind="with: markers"></div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihIVMZnbuCszRMz-ELrIgfT25wgUiv6k&v=3&callback=initMap"></script>
     <script src="js/libs/knockout-3.4.2.js"></script>
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/viewmodel.js"></script>
     <script src="js/script.js"></script>
-    <script src="js/apis/twitter.js"></script>
-
-
-
   </body>
 </html>
