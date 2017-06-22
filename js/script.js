@@ -20,14 +20,16 @@ function initMap() {
     // Push the marker to our array of markers.
     markers.push(marker);
     // Create an onclick event to open an infowindow at each marker.
-    marker.addListener('click', function() {
-      populateInfoWindow(this, largeInfowindow);
-    });
+    marker.addListener('click', populateStarter);
     bounds.extend(markers[i].position);
   }
   map.fitBounds(bounds);
 }
 
+function populateStarter() {
+	var largeInfowindow = new google.maps.InfoWindow();
+    populateInfoWindow(this, largeInfowindow);
+}
 
 // This function will loop through the markers array and display them all.
 function showListings() {
@@ -70,7 +72,7 @@ function populateInfoWindow(marker, infowindow) {
   marker.setAnimation(google.maps.Animation.BOUNCE);
   setTimeout(function() { 
   	marker.setAnimation(null);
-  }, 750)
+  }, 750);
   // shorten infowindow.marker
   var infoMarker = infowindow.marker;
   // Information for requesting data from wikipedia
@@ -98,9 +100,9 @@ function populateInfoWindow(marker, infowindow) {
       });
       clearTimeout(wikiRequestTimeout);
     }
-  })
+  });
 }
 
 // END OF GOOGLE MAP RENDERING //
 
-ko.applyBindings(new ViewModel);
+ko.applyBindings(new ViewModel());
