@@ -16,8 +16,8 @@ Usage:
 
 
 Attribution:
-- Developed with the Foursquare developers API.
-- Developed with Twitter developers widgets.
+- Map built with Google Maps API.
+- Data populating infowindow of markers provided by Wikipedia API.
 
 
 

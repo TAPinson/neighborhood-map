@@ -67,6 +67,11 @@ function hideMarkers(markers) {
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
 function populateInfoWindow(marker, infowindow) {
+
+  marker.setAnimation(google.maps.Animation.BOUNCE);
+  setTimeout(function(){ marker.setAnimation(null); }, 750)
+  
+
   var infoMarker = infowindow.marker;
   // load wikipedia data
   var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';

@@ -9,33 +9,27 @@ var ViewModel = function(map, markers) {
   {
     title: 'BridgestoneArena',
     location: {lat: 36.15, lng: -86.77},
-    id: 0,
-    tweets: "<a class='twitter-timeline' href='https://twitter.com/hashtag/BridgestoneArena' data-widget-id='868898437907042304'>Tweets</a>"
+    id: 0
   },
   {
     title: 'NashvilleZoo',
     location: {lat: 36.1392, lng: -86.7415},
-    id: 1,
-    tweets: "<a class='twitter-timeline' href='https://www.twitter.com/hashtag/NashvilleZoo' data-widget-id='868900216082190336'>Tweets</a>"
+    id: 1
   },
   {
     title: 'NashvilleParthenon',
     location: {lat: 36.1497, lng: -86.8133},
-    id: 2,
-    tweets: "<a class='twitter-timeline' href='https://twitter.com/search?q=%23nashville%20%23parthenon' data-widget-id='868899128100753408'>Tweets</a>"
+    id: 2
   },
   {
     title: 'AdventureScienceCenter',
     location: {lat: 36.1465, lng: -86.7754},
-    id: 3,
-    tweets: "<a class='twitter-timeline' href='https://twitter.com/search?q=adventure%20science%20center' data-widget-id='868889405167194112'>Tweets</a>"
+    id: 3
   },
   {
     title: 'TennesseePerformingArtsCenter',
     location: {lat: 36.166156, lng: -86.776865},
-    id: 4,
-    tweets: "<a class='twitter-timeline' href='https://twitter.com/hashtag/TPAC' data-widget-id='869261143428259840'>Tweets</a>"
-  }
+    id: 4  }
 ];
   this.locList = ko.observableArray([]);
   this.chosenHotspot = ko.observable();
