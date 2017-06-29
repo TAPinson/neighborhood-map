@@ -86,12 +86,9 @@ function hideMarkers(markers) {
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
 function populateInfoWindow(marker, pos, mtitle, mID) {
-
   var infowindow = new google.maps.InfoWindow();
-
   console.log('pos = ' + pos.lat); 
   console.log('mtitle = ' + mtitle); 
-
   var marker = new google.maps.Marker({
       map: map,
       position: pos,
@@ -99,10 +96,6 @@ function populateInfoWindow(marker, pos, mtitle, mID) {
       animation: google.maps.Animation.DROP,
       id: mID
     });
-
-
-  
-  
   // shorten infowindow.marker
   var infoMarker = infowindow.marker;
   // Information for requesting data from wikipedia
@@ -117,15 +110,10 @@ function populateInfoWindow(marker, pos, mtitle, mID) {
     dataType: "jsonp",
     jsonp: "callback",
     success: function( data ) {
-      
       var wikiTitle = data[1];
       var wikiDesc = data[2];
       var wikiMarkerUrl = data[3];
-
-
       var largeInfowindow = new google.maps.InfoWindow();
-
-
       largeInfowindow.open(map, marker);
       largeInfowindow.setContent('<b>' + wikiTitle + '</b><p>' +
                             wikiDesc + '<p>' +
@@ -136,19 +124,7 @@ function populateInfoWindow(marker, pos, mtitle, mID) {
       });
       clearTimeout(wikiRequestTimeout);
     }
-
-
-
-
-
-
   });
 }
-
-
- 
-
-
-
 
 ko.applyBindings(new ViewModel());
