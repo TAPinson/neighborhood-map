@@ -63,12 +63,15 @@ function showListings() {
     });
 
 
+    console.log(marker.title);
+    var workingTitle = this.chosenHotspot().title;
 
 
 
 
 
-  populateInfoWindow(map, marker)
+
+  populateInfoWindow(map, marker, workingTitle)
 
 }
 
@@ -96,11 +99,13 @@ function hideMarkers(markers) {
 // This function populates the infowindow when the marker is clicked. We'll only allow
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
-function populateInfoWindow(marker, infowindow) {
+function populateInfoWindow(marker, infowindow, workingTitle) {
+  
+  console.log('chosenHotspot =' + workingTitle);
   // shorten infowindow.marker
   var infoMarker = infowindow.marker;
   // Information for requesting data from wikipedia
-  var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+  var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + workingTitle + '&format=json&callback=wikiCallback';
   // set six second timer in case of connection issues
   var wikiRequestTimeout = setTimeout(function(){
     alert("Communication with Wikipedia has failed.");
