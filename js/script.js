@@ -35,12 +35,9 @@ function populateStarter() {
 
 // This function will loop through the markers array and display them all.
 function showListings() {
-
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
-
-
   console.log(this.chosenHotspot().title);
   var bounds = new google.maps.LatLngBounds();
   var id = this.chosenHotspot().id;
@@ -50,10 +47,6 @@ function showListings() {
     bounds.extend(markers[i].position);
     }
     map.fitBounds(bounds);
-
-
-
-
     var marker = new google.maps.Marker({
       map: map,
       position: this.chosenHotspot().location,
@@ -61,18 +54,11 @@ function showListings() {
       animation: google.maps.Animation.DROP,
       id: i
     });
-
-
-    console.log(marker.title);
-    var workingTitle = this.chosenHotspot().title;
-
-
-
-
-
-
-  populateInfoWindow(map, marker, workingTitle)
-
+    var pos = this.chosenHotspot().location;
+    var mtitle = this.chosenHotspot().title;
+    var mID = this.chosenHotspot().id;
+    console.log('id' + this.chosenHotspot().id);
+  populateInfoWindow(marker, pos, mtitle, mID)
 }
 
 
@@ -99,13 +85,28 @@ function hideMarkers(markers) {
 // This function populates the infowindow when the marker is clicked. We'll only allow
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
-function populateInfoWindow(marker, infowindow, workingTitle) {
+function populateInfoWindow(marker, pos, mtitle, mID) {
+
+  var infowindow = new google.maps.InfoWindow();
+
+  console.log('pos = ' + pos.lat); 
+  console.log('mtitle = ' + mtitle); 
+
+  var marker = new google.maps.Marker({
+      map: map,
+      position: pos,
+      title: mtitle,
+      animation: google.maps.Animation.DROP,
+      id: mID
+    });
+
+
   
-  console.log('chosenHotspot =' + workingTitle);
+  
   // shorten infowindow.marker
   var infoMarker = infowindow.marker;
   // Information for requesting data from wikipedia
-  var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + workingTitle + '&format=json&callback=wikiCallback';
+  var wikiUrl = 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
   // set six second timer in case of connection issues
   var wikiRequestTimeout = setTimeout(function(){
     alert("Communication with Wikipedia has failed.");
@@ -135,6 +136,12 @@ function populateInfoWindow(marker, infowindow, workingTitle) {
       });
       clearTimeout(wikiRequestTimeout);
     }
+
+
+
+
+
+
   });
 }
 
