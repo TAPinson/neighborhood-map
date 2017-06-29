@@ -31,21 +31,50 @@ function populateStarter() {
     populateInfoWindow(this, largeInfowindow);
 }
 
+// END OF GOOGLE MAP RENDERING //
+
 // This function will loop through the markers array and display them all.
 function showListings() {
+
+  for (var i = 0; i < markers.length; i++) {
+    markers[i].setMap(null);
+  }
+
+
+  console.log(this.chosenHotspot().title);
   var bounds = new google.maps.LatLngBounds();
-  var id = document.getElementById("idBox").innerHTML;
+  var id = this.chosenHotspot().id;
   // Extend the boundaries of the map for each marker and display the marker
   for (var i = 0; i < markers.length; i++) {
     markers[id].setMap(map);
     bounds.extend(markers[i].position);
     }
     map.fitBounds(bounds);
+
+
+
+
+    var marker = new google.maps.Marker({
+      map: map,
+      position: this.chosenHotspot().location,
+      title: this.chosenHotspot().title,
+      animation: google.maps.Animation.DROP,
+      id: i
+    });
+
+
+
+
+
+
+
+  populateInfoWindow(map, marker)
+
 }
 
 
 function showOneListing() {
-  var id = document.getElementById('idBox').innerHTML;
+  var id = this.chosenHotspot().id;
   for (var i = 0; i < markers.length; i++) {
     if  (id != locations[i].id) {
       markers[id].setVisible(false);
@@ -68,11 +97,6 @@ function hideMarkers(markers) {
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
 function populateInfoWindow(marker, infowindow) {
-  // Set markers to bounce when clicked. One bounce takes 750ms, so we'll time it out at 750
-  marker.setAnimation(google.maps.Animation.BOUNCE);
-  setTimeout(function() { 
-  	marker.setAnimation(null);
-  }, 750);
   // shorten infowindow.marker
   var infoMarker = infowindow.marker;
   // Information for requesting data from wikipedia
@@ -87,11 +111,17 @@ function populateInfoWindow(marker, infowindow) {
     dataType: "jsonp",
     jsonp: "callback",
     success: function( data ) {
+      
       var wikiTitle = data[1];
       var wikiDesc = data[2];
       var wikiMarkerUrl = data[3];
-      infowindow.open(map, marker);
-      infowindow.setContent('<b>' + wikiTitle + '</b><p>' +
+
+
+      var largeInfowindow = new google.maps.InfoWindow();
+
+
+      largeInfowindow.open(map, marker);
+      largeInfowindow.setContent('<b>' + wikiTitle + '</b><p>' +
                             wikiDesc + '<p>' +
                             '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>');
       // Make sure the marker property is cleared if the infowindow is closed.
@@ -103,6 +133,10 @@ function populateInfoWindow(marker, infowindow) {
   });
 }
 
-// END OF GOOGLE MAP RENDERING //
+
+ 
+
+
+
 
 ko.applyBindings(new ViewModel());

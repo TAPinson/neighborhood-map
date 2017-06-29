@@ -15,10 +15,20 @@
                                optionsText: 'title',
                                value: chosenHotspot,
                                optionsCaption: 'Choose...',
+
                                event:{ change: showListings}" class="location-list"> LOCATION DROPDOWN BOX
             </select>
             <p data-bind="with: chosenHotspot">
-              <span data-bind="text: id" id="idBox" class="idBox"></span></p>
+              <span data-bind="text: title"></span><br>
+              <span data-bind="text: id" id="idBox" class="idBox"></span>
+            </p>
+
+
+            <ul data-bind="with: chosenHotspot">
+            <li data-bind="text: title"></li></ul>
+
+
+
           </form>
         </div>
         <hr>
