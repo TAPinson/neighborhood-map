@@ -2,28 +2,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 36.1527, lng: -86.7618},
         zoom: 13});
-  var largeInfowindow = new google.maps.InfoWindow();
-  var bounds = new google.maps.LatLngBounds();
-  // The following group uses the locations array from viewmodel to create an array of markers on initialize.
-  for (var i = 0; i < locations.length; i++) {
-    // Get the position from the location array.
-    var position = locations[i].location;
-    var title = locations[i].title;
-    // Create a marker per location, and put into markers array.
-    var marker = new google.maps.Marker({
-      map: map,
-      position: position,
-      title: title,
-      animation: google.maps.Animation.DROP,
-      id: i
-    });
-    // Push the marker to our array of markers.
-    markers.push(marker);
-    // Create an onclick event to open an infowindow at each marker.
-    marker.addListener('click', populateStarter);
-    bounds.extend(markers[i].position);
-  }
-  map.fitBounds(bounds);
+
 }
 
 function populateStarter() {
@@ -39,14 +18,14 @@ function showListings() {
     markers[i].setMap(null);
   }
   console.log(this.chosenHotspot().title);
-  var bounds = new google.maps.LatLngBounds();
+  //var bounds = new google.maps.LatLngBounds();
   var id = this.chosenHotspot().id;
   // Extend the boundaries of the map for each marker and display the marker
   for (var i = 0; i < markers.length; i++) {
     markers[id].setMap(map);
-    bounds.extend(markers[i].position);
+    //bounds.extend(markers[i].position);
     }
-    map.fitBounds(bounds);
+    //map.fitBounds(bounds);
     var marker = new google.maps.Marker({
       map: map,
       position: this.chosenHotspot().location,
