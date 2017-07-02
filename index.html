@@ -23,10 +23,14 @@
               <span data-bind="text: id" id="idBox" class="idBox"></span>
             </p>
 
-
-            <ul data-bind="with: chosenHotspot">
-            <li data-bind="text: title"></li></ul>
-
+            Markers:
+            
+            <ul data-bind="foreach: markers">
+              <li>
+              <span data-bind="text: marker"> </span>:
+              <span data-bind="text: title"> </span>
+              </li>
+            </ul>
 
 
           </form>

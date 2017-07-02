@@ -14,30 +14,25 @@ function populateStarter() {
 
 // This function will loop through the markers array and display them all.
 function showListings() {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
+  for (var i = 0; i < this.markers().length; i++) {
+    this.markers()[i].setMap(null);
   }
   
-  //var bounds = new google.maps.LatLngBounds();
-  var id = this.chosenHotspot().id;
-  
-  //map.fitBounds(bounds);
   var marker = new google.maps.Marker({
       map: map,
       position: this.chosenHotspot().location,
       title: this.chosenHotspot().title,
       animation: google.maps.Animation.DROP,
-      id: i
+      id: this.chosenHotspot().id
     });
-  markers.push(marker);
-
-  for (var i = 0; i < markers.length; i++) {
-    
-    if (this.chosenHotspot().title == markers[i].title) {
-      console.log(markers[i].title + ' is being pushed to the markers array...');
+  this.markers().push(marker);
+  
+  for (var i = 0; i < this.markers().length; i++) {
+    if (this.chosenHotspot().title == this.markers()[i].title) {
+      console.log(this.markers()[i].title + ' is being pushed to the markers array...');
       console.log('success!');
+    }
   }
-}
 
   var pos = this.chosenHotspot().location;
   var mtitle = this.chosenHotspot().title;
@@ -64,9 +59,14 @@ function showOneListing() {
 
 // This function will loop through the listings and hide them all.
 function hideMarkers(markers) {
-  for (var i = 0; i < markers.length; i++) {
-    markers[i].setMap(null);
+  
+  for (var i = 0; i < markers().length; i++) {
+    console.log('Title attempting to remove: ' + markers()[i].title);
+    
+    // Why isnt this removing the markers?
+    markers()[i].setMap(markers()[i]); 
   }
+
 }
 
 

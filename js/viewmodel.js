@@ -1,10 +1,15 @@
 // Initialize the map
 var map;
 
-// Create a new blank array for all the listing markers.
-var markers = [];
+
+
 
 var ViewModel = function(map, markers) {
+  // Create a new blank array for all the listing markers.
+  this.markers = ko.observableArray([]);
+  
+
+
   locations = [
   {
     title: 'BridgestoneArena',
@@ -34,4 +39,5 @@ var ViewModel = function(map, markers) {
   this.locList = ko.observableArray([]);
   this.chosenHotspot = ko.observable();
   this.currentLoc = ko.observable( this.locList()[0] );
+
 }
