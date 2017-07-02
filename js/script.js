@@ -17,27 +17,36 @@ function showListings() {
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(null);
   }
-  console.log(this.chosenHotspot().title);
+  
   //var bounds = new google.maps.LatLngBounds();
   var id = this.chosenHotspot().id;
-  // Extend the boundaries of the map for each marker and display the marker
-  for (var i = 0; i < markers.length; i++) {
-    markers[id].setMap(map);
-    //bounds.extend(markers[i].position);
-    }
-    //map.fitBounds(bounds);
-    var marker = new google.maps.Marker({
+  
+  //map.fitBounds(bounds);
+  var marker = new google.maps.Marker({
       map: map,
       position: this.chosenHotspot().location,
       title: this.chosenHotspot().title,
       animation: google.maps.Animation.DROP,
       id: i
     });
-    var pos = this.chosenHotspot().location;
-    var mtitle = this.chosenHotspot().title;
-    var mID = this.chosenHotspot().id;
-    console.log('id' + this.chosenHotspot().id);
+  markers.push(marker);
+
+  for (var i = 0; i < markers.length; i++) {
+    
+    if (this.chosenHotspot().title == markers[i].title) {
+      console.log(markers[i].title + ' is being pushed to the markers array...');
+      console.log('success!');
+  }
+}
+
+  var pos = this.chosenHotspot().location;
+  var mtitle = this.chosenHotspot().title;
+  var mID = this.chosenHotspot().id;
+    
   populateInfoWindow(marker, pos, mtitle, mID)
+
+ 
+
 }
 
 
@@ -66,8 +75,7 @@ function hideMarkers(markers) {
 // on that markers position.
 function populateInfoWindow(marker, pos, mtitle, mID) {
   var infowindow = new google.maps.InfoWindow();
-  console.log('pos = ' + pos.lat); 
-  console.log('mtitle = ' + mtitle); 
+ 
   var marker = new google.maps.Marker({
       map: map,
       position: pos,
