@@ -51,6 +51,7 @@ function addMarker(location) {
 
 // Adds a marker to the map and push to the array.
 function addOneMarker(location) { 
+  deleteMarkers();
     var marker = new google.maps.Marker({
       position: this.chosenHotspot().location,
       title: this.chosenHotspot().title,
