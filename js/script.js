@@ -1,3 +1,7 @@
+var map;
+
+var markers = [];
+
 var hotSpots = [
 {  title: 'BridgestoneArena', location: {lat: 36.15, lng: -86.77}, id: 0},
 {  title: 'NashvilleZoo', location: {lat: 36.1392, lng: -86.7415},id: 1},
@@ -6,12 +10,13 @@ var hotSpots = [
 {  title: 'TennesseePerformingArtsCenter', location: {lat: 36.166156, lng: -86.776865}, id: 4}
 ];
 
+function viewModel() {
+  this.chosenHotspot = ko.observable();
+}
 
-// In the following example, markers appear when the user clicks on the map.
-// The markers are stored in an array.
-// The user can then click an option to hide, show or delete the markers.
-var map;
-var markers = [];
+ko.applyBindings(new viewModel());
+
+
 
 function initMap() {
   var nashville = {lat: 36.1527, lng: -86.7618};
@@ -19,23 +24,17 @@ function initMap() {
     zoom: 14,
     center: nashville,
   });
-
   // This event listener will call addMarker() when the map is clicked.
   map.addListener('click', function(event) {
     addMarker(event.latLng);
   });
-
   // Adds a marker at the center of the map.
   addMarker(nashville);
 }
 
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
-
-
-
   for (var i = 0; i < hotSpots.length; i++){
-
     var marker = new google.maps.Marker({
       position: hotSpots[i].location,
       title: hotSpots[i].title,
@@ -43,38 +42,51 @@ function addMarker(location) {
       animation: google.maps.Animation.DROP,
       map: map
     });
-
     markers.push(marker);
     populateIndoWindow(marker);
 }}
 
-function populateIndoWindow(marker){
 
-    $.ajax({
-      url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
-      dataType: "jsonp",
-      jsonp: "callback",
-      success: function( data ) {
-        var wikiTitle = data[1];
-        var wikiDesc = data[2];
-        var wikiMarkerUrl = data[3];
 
-        var largeInfowindow = new google.maps.InfoWindow();
-        largeInfowindow.open(map, marker);
-        largeInfowindow.setContent('<b>' +wikiTitle + '</b><p>' +
-                                          wikiDesc + 
-                                          '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>' );
-        // Make sure the marker property is cleared if the infowindow is closed.
-        largeInfowindow.addListener('closeclick',function(){
-          largeInfowindow.setMarker = null;
-        })
-      }   
+
+// Adds a marker to the map and push to the array.
+function addOneMarker(location) { 
+    var marker = new google.maps.Marker({
+      position: this.chosenHotspot().location,
+      title: this.chosenHotspot().title,
+      id: this.chosenHotspot().id,
+      animation: google.maps.Animation.DROP,
+      map: map
     });
-    }
+    markers.push(marker);
+    populateIndoWindow(marker);
+}
+
+
+
+// Adds am infowindow to the map and push to the array.
+function populateIndoWindow(marker){
+  $.ajax({
+    url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function( data ) {
+      var wikiTitle = data[1];
+      var wikiDesc = data[2];
+      var wikiMarkerUrl = data[3];
+      var largeInfowindow = new google.maps.InfoWindow();
+      largeInfowindow.open(map, marker);
+      largeInfowindow.setContent('<b>' +wikiTitle + '</b><p>' +
+                                        wikiDesc + 
+                                        '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>' );
+      // Make sure the marker property is cleared if the infowindow is closed.
+      largeInfowindow.addListener('closeclick',function(){
+        largeInfowindow.setMarker = null;
+      })
+    }   
+  });
+}
   
-
-
-
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {

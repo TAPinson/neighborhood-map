@@ -5,32 +5,27 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
   </head>
-  <body>
-    <div id="floating-panel">
-      <input onclick="clearMarkers()" type=button value="Hide Markers">
-      <input onclick="showMarkers()" type=button value="Show All Markers">
-      <input onclick="deleteMarkers()" type=button value="Delete Markers">
-    </div>
 
-    <select data-bind="options: hotSpots,
+  <body>
+
+    <div id="floating-panel">
+      <button data-bind="click: clearMarkers">Hide Markers</button>
+      <button data-bind="click: addMarker">Show All Markers</button>
+      <button data-bind="click: deleteMarkers">Delete Markers</button><br>
+      <select data-bind="options: hotSpots,
                        optionsText: 'title',
                        value: chosenHotspot,
                        optionsCaption: 'Choose...',
-                       event:{ change: addMarker}" class="location-list"> LOCATION DROPDOWN BOX
-    </select>
-
+                       event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
+      </select>
+    </div>
 
     <div id="map"></div>
-
-
-
-
 
     <script src="js/libs/knockout-3.4.2.js"></script>
     <script src="js/libs/jquery.min.js"></script>
     <script src="js/script.js"></script>
-
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihIVMZnbuCszRMz-ELrIgfT25wgUiv6k&v=3&callback=initMap"></script>
-
+  
   </body>
 </html>
