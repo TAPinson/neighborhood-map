@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Remove Markers</title>
+    <title>Neighborhood Map</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
   </head>
@@ -9,16 +9,37 @@
   <body>
 
     <div id="floating-panel">
-      <button data-bind="click: clearMarkers">Hide Markers</button>
-      <button data-bind="click: addMarker">Show All Markers</button>
-      <button data-bind="click: deleteMarkers">Delete Markers</button><br>
-      <select data-bind="options: hotSpots,
-                       optionsText: 'title',
-                       value: chosenHotspot,
-                       optionsCaption: 'Choose...',
-                       event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
-      </select>
+      <h3>Information pertaining to your selection will appear here</h3>
+      <p data-bind="with: chosenHotspot">
+        Title: <span data-bind="text: title"></span><br>
+        ID: <span data-bind="text: id" id="idBox" class="idBox"></span>
+      </p>
     </div>
+
+    <div class="container">
+      <h3 class="instructions"> Select a Hotspot to learn more! </h3>
+
+      <button data-bind="click: addMarker">Show All Markers</button>
+      <button data-bind="click: deleteMarkers">Close Markers</button><br>
+      Add only one marker at a time:
+      <select data-bind="options: hotSpots,
+                         optionsText: 'title',
+                         value: chosenHotspot,
+                         optionsCaption: 'Choose...',
+                         event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
+      </select><br>
+
+      Remove markers one at a time:
+      <select data-bind="options: hotSpots,
+                         optionsText: 'title',
+                         value: chosenHotspot,
+                         optionsCaption: 'Choose...',
+                         event:{ change: deleteOneMarker}" class="location-list"> Delete Markers
+      </select><br>
+
+    </div>
+    
+
 
     <div id="map"></div>
 

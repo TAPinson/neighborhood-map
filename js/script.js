@@ -110,3 +110,15 @@ function deleteMarkers() {
   clearMarkers();
   markers = [];
 }
+
+function deleteOneMarker() {
+  setMapOnAll(null);
+  for (var i = 0; i < markers.length; i++) {
+    console.log(markers[i].id);
+    if (markers[i].id == this.chosenHotspot().id){
+      console.log(markers[i].id + ' IS EQUAL TO ' + this.chosenHotspot().id);
+    }
+  }
+  console.log(this.chosenHotspot().id);
+  //markers = [];
+}

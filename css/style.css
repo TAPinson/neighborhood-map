@@ -1,7 +1,11 @@
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
+    top: 0%;
   height: 100%;
+  left: 25%;
+  position: absolute;
+  right: 0px;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
@@ -9,10 +13,27 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+.container {
+  width: 17%;
+  position: relative;
+  border: 1px solid #999;
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-top: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+
+
 #floating-panel {
+  width: 17%;
   position: absolute;
-  top: 10px;
-  left: 25%;
+  top: 50%;
+  left: 3.5%;
   z-index: 5;
   background-color: #fff;
   padding: 5px;
@@ -21,4 +42,5 @@ html, body {
   font-family: 'Roboto','sans-serif';
   line-height: 30px;
   padding-left: 10px;
+  padding-right: 10px;
 }
