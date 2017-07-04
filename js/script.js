@@ -67,7 +67,7 @@ function addMarker(location) {
         })
 
         markers.push(marker, largeInfowindow);
-        largeInfowindow.anchor.position = markers[3].position;
+
         console.log(largeInfowindow.anchor.position);
 
       }
