@@ -32,48 +32,50 @@ function initMap() {
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
 
-  //for (var i = 0; i < hotSpots.length; i++){
+
+
+  for (var i = 0; i < hotSpots.length; i++){
 
     var marker = new google.maps.Marker({
-      position: location,
-      title: "some title",
-      id: 1,
+      position: hotSpots[i].location,
+      title: hotSpots[i].title,
+      id: hotSpots[i].id,
       animation: google.maps.Animation.DROP,
       map: map
     });
 
 
 
-    //$.ajax({
-    //  url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
-    //  dataType: "jsonp",
-    //  jsonp: "callback",
-    //  success: function( data ) {
-    //    var wikiTitle = data[1];
-    //    var wikiDesc = data[2];
-    //    var wikiMarkerUrl = data[3];
+    $.ajax({
+      url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
+      dataType: "jsonp",
+      jsonp: "callback",
+      success: function( data ) {
+        var wikiTitle = data[1];
+        var wikiDesc = data[2];
+        var wikiMarkerUrl = data[3];
         var largeInfowindow = new google.maps.InfoWindow();
-    //    largeInfowindow.open(map, marker);
-    //    largeInfowindow.setContent('<b>' + wikiTitle + '</b><p>' +
-    //                          wikiDesc + '<p>' +
-    //                          '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>');
+        largeInfowindow.open(map, marker);
+        largeInfowindow.setContent('<b>' + wikiTitle + '</b><p>' +
+                              wikiDesc + '<p>' +
+                              '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>');
 
-    //    // Make sure the marker property is cleared if the infowindow is closed.
-    //    largeInfowindow.addListener('closeclick',function(){
-    //      largeInfowindow.setMarker = null;
+        // Make sure the marker property is cleared if the infowindow is closed.
+        largeInfowindow.addListener('closeclick',function(){
+          largeInfowindow.setMarker = null;
 
-    //    })
+        })
 
         markers.push(marker, largeInfowindow);
 
-        //console.log(largeInfowindow.anchor.position);
+        console.log(largeInfowindow.anchor.position);
 
-    //  }
-    //});
+      }
+    });
 
 
 
-  //  };
+    };
   }
 
 
