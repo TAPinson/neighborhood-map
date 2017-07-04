@@ -16,7 +16,7 @@ var markers = [];
 function initMap() {
   var nashville = {lat: 36.1527, lng: -86.7618};
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
+    zoom: 14,
     center: nashville,
   });
 
@@ -44,7 +44,11 @@ function addMarker(location) {
       map: map
     });
 
+    markers.push(marker);
+    populateIndoWindow(marker);
+}}
 
+function populateIndoWindow(marker){
 
     $.ajax({
       url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
@@ -54,29 +58,20 @@ function addMarker(location) {
         var wikiTitle = data[1];
         var wikiDesc = data[2];
         var wikiMarkerUrl = data[3];
+
         var largeInfowindow = new google.maps.InfoWindow();
         largeInfowindow.open(map, marker);
-        largeInfowindow.setContent('<b>' + wikiTitle + '</b><p>' +
-                              wikiDesc + '<p>' +
-                              '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>');
-
+        largeInfowindow.setContent('<b>' +wikiTitle + '</b><p>' +
+                                          wikiDesc + 
+                                          '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>' );
         // Make sure the marker property is cleared if the infowindow is closed.
         largeInfowindow.addListener('closeclick',function(){
           largeInfowindow.setMarker = null;
-
         })
-
-        markers.push(marker, largeInfowindow);
-
-        console.log(largeInfowindow.anchor.position);
-
-      }
+      }   
     });
-
-
-
-    };
-  }
+    }
+  
 
 
 
