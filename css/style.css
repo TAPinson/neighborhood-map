@@ -1,120 +1,24 @@
-* {box-sizing:border-box;}
-
-html,
-body {
-  background-color: #CCC;
-  font-family: Arial, sans-serif;
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
   height: 100%;
-  max-height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
   margin: 0;
   padding: 0;
 }
-
-.container {
-  height: 100%;
-  position: relative;
-}
-
-input {
-  font-size: 12px;
-}
-
-h1 {
-  color: #525454;
-  font-size: 22px;
-  margin: 0 0 10px 0;
-  text-align: center;
-}
-
-#hide-listings,
-#show-listings {
-  width: 48%;
-}
-
-hr {
-  background: #D0D7D9;
-  height: 1px;
-  margin: 20px 0 20px 0;
-  border: none;
-}
-
-#map {
-  top: 0%;
-  height: 100%;
+#floating-panel {
+  position: absolute;
+  top: 10px;
   left: 25%;
-  position: absolute;
-  right: 0px;
-}
-
-.options-box {
-  background: #fff;
+  z-index: 5;
+  background-color: #fff;
+  padding: 5px;
   border: 1px solid #999;
-  border-radius: 3px;
-  height: 100%;
-  line-height: 35px;
-  padding: 10px 10px 30px 10px;
-  text-align: left;
-  width: 25%;
-}
-
-#pano {
-  width: 200px;
-  height: 200px;
-}
-
-#places-search,
-#search-within-time-text {
-  width: 84%;
-}
-
-.text {
-  font-size: 12px;
-}
-
-#toggle-drawing {
-  width: 27%;
-  position: relative;
-  margin-left: 10px;
-}
-
-#zoom-to-area-text {
-  width: 70%;
-}
-
-#zoom-to-area {
-  width: 24%;
-}
-
-.wikipedia-container {
-  border-style: groove;
   text-align: center;
-
-  margin-top: 5%;
-
-}
-
-.chosenHotspot{
-  border-style: groove;
-  padding-left: 2%;
-  padding-right: 2%;
-}
-
-.instructions {
-  text-align: center;
-  padding-right: 2%;
-}
-
-.locations-list {
-  margin-top: 75%;
-}
-
-.idBox {
-  position: absolute;
-  right: 0px;
-}
-
-.buttonsBox {
-  border-style: groove;
-  padding-left: 2%;
-  padding-right: 2%;
+  font-family: 'Roboto','sans-serif';
+  line-height: 30px;
+  padding-left: 10px;
 }
