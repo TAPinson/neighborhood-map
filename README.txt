@@ -24,8 +24,7 @@ Attribution:
 - Map built with Google Maps API and Udacity Full Stack Nanodegree Program lesson: 
 	"The Frontend: Javascript and AJAX"
 - Data populating infowindow of markers provided by Wikipedia API.
-- Marker bounce on click functionality implemented with information provided at:
-	url: https://stackoverflow.com/questions/7339200/bounce-a-pin-in-google-maps-once
+- setMapOnAll functionality demonstrated by Github user "stefanpinson".
 
 About the Developer:
 Developer: Travis Pinson
