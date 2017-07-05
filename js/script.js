@@ -15,15 +15,19 @@ function viewModel() {
 ko.applyBindings(new viewModel());
 
 
+var googleRequestTimeout = setTimeout(function(){
+	alert("Communication with Google has failed.");
+}, 6000);
+
 function initMap() {
   var nashville = {lat: 36.1527, lng: -86.7618};
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 12,
     center: nashville,
   });
-
   // Adds a marker at the center of the map.
   addMarker(nashville);
+	clearTimeout(googleRequestTimeout);
 }
 
 // Adds a marker to the map and push to the array.
@@ -55,6 +59,7 @@ function addOneMarker(location) {
 
 // Adds am infowindow to the map and push to the array.
 function populateIndoWindow(marker){
+	// set six second timer in case of wikipedia communication issues
 	var wikiRequestTimeout = setTimeout(function(){
 		alert("Communication with Wikipedia has failed.");
 	}, 6000);
@@ -66,13 +71,13 @@ function populateIndoWindow(marker){
       var wikiTitle = data[1];
       var wikiDesc = data[2];
       var wikiMarkerUrl = data[3];
-			// set six second timer in case of connection issues
-
       var largeInfowindow = new google.maps.InfoWindow();
       largeInfowindow.open(map, marker);
-      largeInfowindow.setContent('<b>' +wikiTitle + '</b><p>' +
-                                        wikiDesc +
-                                        '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>' );
+      largeInfowindow.setContent(
+																'<b>' +wikiTitle + '</b><p>' +
+																wikiDesc +
+																'<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
+															);
 			clearTimeout(wikiRequestTimeout);
       // Make sure the marker property is cleared if the infowindow is closed.
       largeInfowindow.addListener('closeclick',function(){
