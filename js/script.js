@@ -41,7 +41,7 @@ function addMarker(location) {
 }}
 
 // Adds a marker to the map and push to the array.
-function addOneMarker(location) {   
+function addOneMarker(location) {
     var marker = new google.maps.Marker({
       position: this.chosenHotspot().location,
       title: this.chosenHotspot().title,
@@ -55,6 +55,9 @@ function addOneMarker(location) {
 
 // Adds am infowindow to the map and push to the array.
 function populateIndoWindow(marker){
+	var wikiRequestTimeout = setTimeout(function(){
+		alert("Communication with Wikipedia has failed.");
+	}, 6000);
   $.ajax({
     url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
     dataType: "jsonp",
@@ -63,19 +66,22 @@ function populateIndoWindow(marker){
       var wikiTitle = data[1];
       var wikiDesc = data[2];
       var wikiMarkerUrl = data[3];
+			// set six second timer in case of connection issues
+
       var largeInfowindow = new google.maps.InfoWindow();
       largeInfowindow.open(map, marker);
       largeInfowindow.setContent('<b>' +wikiTitle + '</b><p>' +
-                                        wikiDesc + 
+                                        wikiDesc +
                                         '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>' );
+			clearTimeout(wikiRequestTimeout);
       // Make sure the marker property is cleared if the infowindow is closed.
       largeInfowindow.addListener('closeclick',function(){
         largeInfowindow.setMarker = null;
       })
-    }   
+    }
   });
 }
-  
+
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
@@ -104,9 +110,8 @@ function deleteOneMarker() {
     if (markers[i].title == this.trashSpot().title){
       setMapOnAll(null);
     	var index = markers.indexOf(markers[i]);
-      console.log('Index: ' + index);
  	  	markers.splice(index, 1);
- 	  	for (var i = 0; i < markers.length; i++){ 
+ 	  	for (var i = 0; i < markers.length; i++){
  	  		markers[i].setMap(map);
  	  	}
  	  }
