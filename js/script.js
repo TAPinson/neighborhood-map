@@ -1,6 +1,5 @@
 ko.applyBindings(new viewModel());
 
-
 var googleRequestTimeout = setTimeout(function(){
 	alert("Communication with Google has failed.");
 }, 6000);

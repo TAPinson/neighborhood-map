@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="css/style.css">
   </head>
-
   <body>
     <div class="container">
       <h3 class="instructions"> Customize Your Hotspots: </h3>
@@ -19,9 +18,7 @@
                          optionsCaption: 'Add..',
                          event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
       </select>
-
       <p>
-
       Remove markers one at a time:
       <select data-bind="options: hotSpots,
                          optionsText: 'title',
@@ -29,9 +26,7 @@
                          optionsCaption: 'Remove...',
                          event:{ change: deleteOneMarker}" class="location-list"> Delete Markers
       </select><br>
-
       <p>
-
       Show Only One Marker:
       <select data-bind="options: hotSpots,
                          optionsText: 'title',
@@ -39,10 +34,6 @@
                          optionsCaption: 'Only...',
                          event:{ change: onlyOneMarker}" class="location-list"> Delete Markers
       </select><br>
-
-
-
-
     </div>
     <div id="map"></div>
     <script src="js/libs/knockout-3.4.2.js"></script>
