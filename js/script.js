@@ -1,9 +1,6 @@
-
-
 function viewModel() {
 	var map;
 	markers = [];
-
 	hotSpots = [
 		{title: 'BridgestoneArena', location: {lat: 36.15, lng: -86.77}, id: 0},
 		{title: 'NashvilleZoo', location: {lat: 36.0892, lng: -86.7415},id: 1},
@@ -11,13 +8,11 @@ function viewModel() {
 		{title: 'AdventureScienceCenter', location: {lat: 36.1465, lng: -86.7754}, id: 3},
 		{title: 'TennesseePerformingArtsCenter', location: {lat: 36.166156, lng: -86.776865}, id: 4}
 		];
-
   this.chosenHotspot = ko.observable();
   this.trashSpot = ko.observable()
 }
 
 ko.applyBindings(new viewModel());
-
 
 
 function initMap() {
@@ -45,12 +40,8 @@ function addMarker(location) {
     populateIndoWindow(marker);
 }}
 
-
-
-
 // Adds a marker to the map and push to the array.
-function addOneMarker(location) { 
-  
+function addOneMarker(location) {   
     var marker = new google.maps.Marker({
       position: this.chosenHotspot().location,
       title: this.chosenHotspot().title,
@@ -61,8 +52,6 @@ function addOneMarker(location) {
     markers.push(marker);
     populateIndoWindow(marker);
 }
-
-
 
 // Adds am infowindow to the map and push to the array.
 function populateIndoWindow(marker){
@@ -111,18 +100,15 @@ function deleteMarkers() {
 }
 
 function deleteOneMarker() {
-  setMapOnAll(null);
   for (var i = 0; i < markers.length; i++) {
-    if (markers[i].id == this.trashSpot().id){
+    if (markers[i].title == this.trashSpot().title){
+      setMapOnAll(null);
     	var index = markers.indexOf(markers[i]);
-      	console.log('Index: ' + index);
+      console.log('Index: ' + index);
  	  	markers.splice(index, 1);
  	  	for (var i = 0; i < markers.length; i++){ 
  	  		markers[i].setMap(map);
  	  	}
  	  }
-
- 	  
  	}
-
  }
