@@ -1,17 +1,3 @@
-function viewModel() {
-	var map;
-	markers = [];
-	hotSpots = [
-		{title: 'BridgestoneArena', location: {lat: 36.15, lng: -86.77}, id: 0},
-		{title: 'NashvilleZoo', location: {lat: 36.0892, lng: -86.7415},id: 1},
-		{title: 'NashvilleParthenon', location: {lat: 36.1497, lng: -86.8133}, id: 2},
-		{title: 'AdventureScienceCenter', location: {lat: 36.1465, lng: -86.7754}, id: 3},
-		{title: 'TennesseePerformingArtsCenter', location: {lat: 36.166156, lng: -86.776865}, id: 4}
-		];
-  this.chosenHotspot = ko.observable();
-  this.trashSpot = ko.observable()
-}
-
 ko.applyBindings(new viewModel());
 
 
@@ -32,6 +18,7 @@ function initMap() {
 
 // Adds a marker to the map and push to the array.
 function addMarker(location) {
+	deleteMarkers();
   for (var i = 0; i < hotSpots.length; i++){
     var marker = new google.maps.Marker({
       position: hotSpots[i].location,
@@ -57,6 +44,20 @@ function addOneMarker(location) {
     populateIndoWindow(marker);
 }
 
+// Adds a marker to the map and push to the array after clearing map of other markers.
+function onlyOneMarker(location) {
+	deleteMarkers();
+	var marker = new google.maps.Marker({
+		position: this.chosenHotspot().location,
+    title: this.chosenHotspot().title,
+    id: this.chosenHotspot().id,
+    animation: google.maps.Animation.DROP,
+    map: map
+	});
+  markers.push(marker);
+  populateIndoWindow(marker);
+}
+
 // Adds am infowindow to the map and push to the array.
 function populateIndoWindow(marker){
 	// set six second timer in case of wikipedia communication issues
@@ -71,17 +72,17 @@ function populateIndoWindow(marker){
       var wikiTitle = data[1];
       var wikiDesc = data[2];
       var wikiMarkerUrl = data[3];
-      var largeInfowindow = new google.maps.InfoWindow();
-      largeInfowindow.open(map, marker);
-      largeInfowindow.setContent(
+      var infowindow = new google.maps.InfoWindow();
+      infowindow.open(map, marker);
+      infowindow.setContent(
 																'<b>' +wikiTitle + '</b><p>' +
 																wikiDesc +
 																'<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
 															);
 			clearTimeout(wikiRequestTimeout);
       // Make sure the marker property is cleared if the infowindow is closed.
-      largeInfowindow.addListener('closeclick',function(){
-        largeInfowindow.setMarker = null;
+      infowindow.addListener('closeclick',function(){
+        infowindow.setMarker = null;
       })
     }
   });

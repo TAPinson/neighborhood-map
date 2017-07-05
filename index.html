@@ -8,7 +8,7 @@
 
   <body>
     <div class="container">
-      <h3 class="instructions"> Select a Hotspot to learn more! </h3>
+      <h3 class="instructions"> Customize Your Hotspots: </h3>
       <button data-bind="click: addMarker">Show All Markers</button>
       <button data-bind="click: deleteMarkers">Close Markers</button>
       <p>
@@ -19,6 +19,7 @@
                          optionsCaption: 'Add..',
                          event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
       </select>
+
       <p>
 
       Remove markers one at a time:
@@ -28,10 +29,25 @@
                          optionsCaption: 'Remove...',
                          event:{ change: deleteOneMarker}" class="location-list"> Delete Markers
       </select><br>
+
+      <p>
+
+      Show Only One Marker:
+      <select data-bind="options: hotSpots,
+                         optionsText: 'title',
+                         value: chosenHotspot,
+                         optionsCaption: 'Only...',
+                         event:{ change: onlyOneMarker}" class="location-list"> Delete Markers
+      </select><br>
+
+
+
+
     </div>
     <div id="map"></div>
     <script src="js/libs/knockout-3.4.2.js"></script>
     <script src="js/libs/jquery.min.js"></script>
+    <script src="js/viewmodel.js"></script>
     <script src="js/script.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCihIVMZnbuCszRMz-ELrIgfT25wgUiv6k&v=3&callback=initMap"></script>
   </body>
