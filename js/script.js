@@ -1,17 +1,19 @@
-var map;
 
-var markers = [];
-
-var hotSpots = [
-{  title: 'BridgestoneArena', location: {lat: 36.15, lng: -86.77}, id: 0},
-{  title: 'NashvilleZoo', location: {lat: 36.1392, lng: -86.7415},id: 1},
-{  title: 'NashvilleParthenon', location: {lat: 36.1497, lng: -86.8133}, id: 2},
-{  title: 'AdventureScienceCenter', location: {lat: 36.1465, lng: -86.7754}, id: 3},
-{  title: 'TennesseePerformingArtsCenter', location: {lat: 36.166156, lng: -86.776865}, id: 4}
-];
 
 function viewModel() {
+	var map;
+	markers = [];
+
+	hotSpots = [
+		{title: 'BridgestoneArena', location: {lat: 36.15, lng: -86.77}, id: 0},
+		{title: 'NashvilleZoo', location: {lat: 36.0892, lng: -86.7415},id: 1},
+		{title: 'NashvilleParthenon', location: {lat: 36.1497, lng: -86.8133}, id: 2},
+		{title: 'AdventureScienceCenter', location: {lat: 36.1465, lng: -86.7754}, id: 3},
+		{title: 'TennesseePerformingArtsCenter', location: {lat: 36.166156, lng: -86.776865}, id: 4}
+		];
+
   this.chosenHotspot = ko.observable();
+  this.trashSpot = ko.observable()
 }
 
 ko.applyBindings(new viewModel());
@@ -21,13 +23,10 @@ ko.applyBindings(new viewModel());
 function initMap() {
   var nashville = {lat: 36.1527, lng: -86.7618};
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 14,
+    zoom: 12,
     center: nashville,
   });
-  // This event listener will call addMarker() when the map is clicked.
-  map.addListener('click', function(event) {
-    addMarker(event.latLng);
-  });
+
   // Adds a marker at the center of the map.
   addMarker(nashville);
 }
@@ -51,7 +50,7 @@ function addMarker(location) {
 
 // Adds a marker to the map and push to the array.
 function addOneMarker(location) { 
-  deleteMarkers();
+  
     var marker = new google.maps.Marker({
       position: this.chosenHotspot().location,
       title: this.chosenHotspot().title,
@@ -114,11 +113,16 @@ function deleteMarkers() {
 function deleteOneMarker() {
   setMapOnAll(null);
   for (var i = 0; i < markers.length; i++) {
-    console.log(markers[i].id);
-    if (markers[i].id == this.chosenHotspot().id){
-      console.log(markers[i].id + ' IS EQUAL TO ' + this.chosenHotspot().id);
-    }
-  }
-  console.log(this.chosenHotspot().id);
-  //markers = [];
-}
+    if (markers[i].id == this.trashSpot().id){
+    	var index = markers.indexOf(markers[i]);
+      	console.log('Index: ' + index);
+ 	  	markers.splice(index, 1);
+ 	  	for (var i = 0; i < markers.length; i++){ 
+ 	  		markers[i].setMap(map);
+ 	  	}
+ 	  }
+
+ 	  
+ 	}
+
+ }
