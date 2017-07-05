@@ -12,12 +12,12 @@ function initMap() {
     center: nashville,
   });
   // Adds a marker at the center of the map.
-  addMarker(nashville);
+  addMarkers();
 	clearTimeout(googleRequestTimeout);
 }
 
 // Adds a marker to the map and push to the array.
-function addMarker(location) {
+function addMarkers(location) {
 	deleteMarkers();
   for (var i = 0; i < hotSpots.length; i++){
     var marker = new google.maps.Marker({
