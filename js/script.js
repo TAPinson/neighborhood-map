@@ -19,7 +19,6 @@ function initMap() {
 function addMarkers() {
 	deleteMarkers();
   	for (var i = 0; i < hotSpots.length; i++){
-
     	var marker = new google.maps.Marker({
       		position: hotSpots[i].location,
       		title: hotSpots[i].title,
@@ -27,21 +26,17 @@ function addMarkers() {
       		animation: google.maps.Animation.DROP,
       		map: map
       	});
-    
-    	populateIndoWindow(marker);
     	markerListener(marker);
     	markers.push(marker);
     }
-
 }
 
 function markerListener(marker){
 	marker.addListener('click', function() {
 		console.log(marker.title);
+		populateIndoWindow(marker);
 	})
-
 }
-
 
 // Adds a marker to the map and push to the array.
 function addOneMarker(location) {
@@ -52,15 +47,11 @@ function addOneMarker(location) {
       animation: google.maps.Animation.DROP,
       map: map
     });
-
-
      marker.addListener('click', function() {
      	console.log(marker.title);
     });
-
     markers.push(marker);
     populateIndoWindow(marker);
-
 }
 
 // Adds a marker to the map and push to the array after clearing map of other markers.
@@ -73,11 +64,9 @@ function onlyOneMarker() {
     animation: google.maps.Animation.DROP,
     map: map
 	});
-
 	marker.addListener('click', function() {
      	console.log(marker.title);
     });
-
   markers.push(marker);
   populateIndoWindow(marker);
 }
