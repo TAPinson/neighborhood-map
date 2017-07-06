@@ -16,19 +16,32 @@ function initMap() {
 }
 
 // Adds a marker to the map and push to the array.
-function addMarkers(location) {
+function addMarkers() {
 	deleteMarkers();
-  for (var i = 0; i < hotSpots.length; i++){
-    var marker = new google.maps.Marker({
-      position: hotSpots[i].location,
-      title: hotSpots[i].title,
-      id: hotSpots[i].id,
-      animation: google.maps.Animation.DROP,
-      map: map
-    });
-    markers.push(marker);
-    populateIndoWindow(marker);
-}}
+  	for (var i = 0; i < hotSpots.length; i++){
+
+    	var marker = new google.maps.Marker({
+      		position: hotSpots[i].location,
+      		title: hotSpots[i].title,
+      		id: hotSpots[i].id,
+      		animation: google.maps.Animation.DROP,
+      		map: map
+      	});
+    
+    	populateIndoWindow(marker);
+    	markerListener(marker);
+    	markers.push(marker);
+    }
+
+}
+
+function markerListener(marker){
+	marker.addListener('click', function() {
+		console.log(marker.title);
+	})
+
+}
+
 
 // Adds a marker to the map and push to the array.
 function addOneMarker(location) {
@@ -39,12 +52,19 @@ function addOneMarker(location) {
       animation: google.maps.Animation.DROP,
       map: map
     });
+
+
+     marker.addListener('click', function() {
+     	console.log(marker.title);
+    });
+
     markers.push(marker);
     populateIndoWindow(marker);
+
 }
 
 // Adds a marker to the map and push to the array after clearing map of other markers.
-function onlyOneMarker(location) {
+function onlyOneMarker() {
 	deleteMarkers();
 	var marker = new google.maps.Marker({
 		position: this.chosenHotspot().location,
@@ -53,6 +73,11 @@ function onlyOneMarker(location) {
     animation: google.maps.Animation.DROP,
     map: map
 	});
+
+	marker.addListener('click', function() {
+     	console.log(marker.title);
+    });
+
   markers.push(marker);
   populateIndoWindow(marker);
 }
