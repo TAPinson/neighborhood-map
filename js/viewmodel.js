@@ -1,6 +1,9 @@
 function viewModel() {
 	var map;
+
 	markers = [];
+
+	infowindows = [];
 	hotSpots = [
 		{title: 'BridgestoneArena', location: {lat: 36.1592, lng: -86.7785}, id: 0},
 		{title: 'NashvilleZoo', location: {lat: 36.0892, lng: -86.7415},id: 1},

@@ -36,6 +36,7 @@ function markerListener(marker){
 		console.log(marker.title);
 		populateIndoWindow(marker);
 	})
+
 }
 
 // Adds a marker to the map and push to the array.
@@ -97,9 +98,26 @@ function populateIndoWindow(marker){
       infowindow.addListener('closeclick',function(){
         infowindow.setMarker = null;
       })
-    }
-  });
+      infowindows.push(infowindow);
+      console.log(infowindows.length);
+   	  console.log(infowindows[0]);
+   	  if (infowindows.length > 1) {
+   	  closeAllInfoWindows(marker);
+   	}
+   }
+});
 }
+
+
+function closeAllInfoWindows(marker) {
+  for (var i=0;i<infowindows.length;i++) {
+     infowindows[i].close();
+  }
+  infowindows = [];
+  populateIndoWindow(marker);
+}
+
+
 
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
