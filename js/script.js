@@ -1,5 +1,7 @@
 ko.applyBindings(new viewModel());
 
+
+
 var googleRequestTimeout = setTimeout(function(){
 	alert("Communication with Google has failed.");
 }, 6000);
@@ -78,46 +80,42 @@ function populateIndoWindow(marker){
 	var wikiRequestTimeout = setTimeout(function(){
 		alert("Communication with Wikipedia has failed.");
 	}, 6000);
-  $.ajax({
-    url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
-    dataType: "jsonp",
-    jsonp: "callback",
-    success: function( data ) {
-      var wikiTitle = data[1];
-      var wikiDesc = data[2];
-      var wikiMarkerUrl = data[3];
-      var infowindow = new google.maps.InfoWindow();
-      infowindow.open(map, marker);
-      infowindow.setContent(
-																'<b>' +wikiTitle + '</b><p>' +
-																wikiDesc +
-																'<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
-															);
+	$.ajax({
+		url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
+    	dataType: "jsonp",
+    	jsonp: "callback",
+    	success: function( data ) {
+    		var wikiTitle = data[1];
+      		var wikiDesc = data[2];
+      		var wikiMarkerUrl = data[3];
+      		var infowindow = new google.maps.InfoWindow();
+      		infowindow.open(map, marker);
+      		infowindow.setContent('<b>' +wikiTitle + '</b><p>' +
+					     		wikiDesc +
+								'<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
+								);
 			clearTimeout(wikiRequestTimeout);
-      // Make sure the marker property is cleared if the infowindow is closed.
-      infowindow.addListener('closeclick',function(){
-        infowindow.setMarker = null;
-      })
-      infowindows.push(infowindow);
-      console.log(infowindows.length);
-   	  console.log(infowindows[0]);
-   	  if (infowindows.length > 1) {
-   	  closeAllInfoWindows(marker);
-   	}
-   }
-});
+			// Make sure the marker property is cleared if the infowindow is closed.
+      		infowindow.addListener('closeclick',function(){
+      			infowindow.setMarker = null;
+      		})
+      	infowindows.push(infowindow);
+      	console.log(infowindows.length);
+   	  	console.log(infowindows[0]);
+   	  	if (infowindows.length > 1) {
+   	  		closeAllInfoWindows(marker);
+   	  	}
+   	  }
+   	});
 }
-
 
 function closeAllInfoWindows(marker) {
-  for (var i=0;i<infowindows.length;i++) {
-     infowindows[i].close();
+	for (var i=0;i<infowindows.length;i++) {
+		infowindows[i].close();
+	}
+	infowindows = [];
+  	populateIndoWindow(marker);
   }
-  infowindows = [];
-  populateIndoWindow(marker);
-}
-
-
 
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {

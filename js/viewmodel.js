@@ -1,8 +1,5 @@
-function viewModel() {
+function viewModel(items) {
 	var map;
-
-	markers = [];
-
 	infowindows = [];
 	hotSpots = [
 		{title: 'BridgestoneArena', location: {lat: 36.1592, lng: -86.7785}, id: 0},
@@ -11,6 +8,13 @@ function viewModel() {
 		{title: 'AdventureScienceCenter', location: {lat: 36.1465, lng: -86.7754}, id: 3},
 		{title: 'TennesseePerformingArtsCenter', location: {lat: 36.1661644, lng: -86.7824}, id: 4}
 		];
-  this.chosenHotspot = ko.observable();
-  this.trashSpot = ko.observable()
+
+  	this.trashSpot = ko.observable()
+
+  	markers = [];
+
+  	this.chosenHotspot = ko.observable();
+
+
+
 }

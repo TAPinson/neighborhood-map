@@ -14,9 +14,42 @@ html, body {
   padding: 0;
 }
 
+.hotspotItems {
+  width: 21.5%;
+  position: relative;
+  border: 1px solid #999;
+
+  margin-top: 0.5%;
+
+  padding-top: 1%;
+  padding-bottom: 1%;
+  text-align: center;
+}
+
+.hotspotList {
+
+}
+
+
+ul {
+  list-style-type: none;
+}
+
 .container {
   width: 17%;
   position: relative;
+  border: 1px solid #999;
+  margin-right: 2%;
+  margin-left: 2%;
+  margin-top: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.currentMarkers {
+  max-width: 17%;
   border: 1px solid #999;
   margin-right: 2%;
   margin-left: 2%;

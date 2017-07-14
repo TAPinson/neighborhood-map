@@ -35,6 +35,22 @@
                          event:{ change: onlyOneMarker}" class="location-list"> Delete Markers
       </select><br>
     </div>
+
+
+
+      <ul data-bind="foreach: hotSpots" class="hotspotList">
+
+        <li class="hotspotItems">
+          <span data-bind="text: title,
+          event:{ click: addOneMarker}"></span>
+
+        </li>
+
+      </ul>
+
+
+
+
     <div id="map"></div>
     <script src="js/libs/knockout-3.4.2.js"></script>
     <script src="js/libs/jquery.min.js"></script>
