@@ -12,7 +12,7 @@ function initMap() {
     zoom: 12,
     center: nashville,
   });
-  
+
   addMarkers();
 	clearTimeout(googleRequestTimeout);
 }
@@ -114,7 +114,7 @@ function populateIndoWindow(marker){
       		var wikiMarkerUrl = data[3];
       		var infowindow = new google.maps.InfoWindow();
       		infowindow.open(map, marker);
-      		infowindow.setContent('<b>' +wikiTitle + '</b><p>' +
+      		infowindow.setContent('<b>' + marker.title + '</b><p>' +
 					     		wikiDesc +
 								'<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
 								);
