@@ -1,4 +1,4 @@
-function viewModel(items) {
+function viewModel() {
 	var map;
 	infowindows = [];
 	hotSpots = [
@@ -16,5 +16,11 @@ function viewModel(items) {
   	this.chosenHotspot = ko.observable();
 
 
+      	items = ko.observableArray([
+        { itemName: 'Choice 1' },
+        { itemName: 'Choice 2' }
+        ])
+    
+    chosenItems = ko.observableArray()
 
 }

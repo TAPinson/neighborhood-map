@@ -27,26 +27,37 @@
                          event:{ change: deleteOneMarker}" class="location-list"> Delete Markers
       </select><br>
       <p>
-      Show Only One Marker:
-      <select data-bind="options: hotSpots,
-                         optionsText: 'title',
-                         value: chosenHotspot,
-                         optionsCaption: 'Only...',
-                         event:{ change: onlyOneMarker}" class="location-list"> Delete Markers
-      </select><br>
+      
+    </div>
+    <div class="list-markers">
+    <h3 class="list-text">Show Me:</h3>
+      <ul data-bind="foreach: { data: hotSpots, as: 'chosenHotspot', with: 'map' }" class="hotspotList"> 
+       <li data-bind="text: title, event:{ click: listedMarkers} " class="hotspotItems"></li>
+      </ul>   
     </div>
 
 
 
-      <ul data-bind="foreach: hotSpots" class="hotspotList">
 
-        <li class="hotspotItems">
-          <span data-bind="text: title,
-          event:{ click: addOneMarker}"></span>
 
-        </li>
 
-      </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

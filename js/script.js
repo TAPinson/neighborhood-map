@@ -12,7 +12,7 @@ function initMap() {
     zoom: 12,
     center: nashville,
   });
-  // Adds a marker at the center of the map.
+  
   addMarkers();
 	clearTimeout(googleRequestTimeout);
 }
@@ -35,14 +35,18 @@ function addMarkers() {
 
 function markerListener(marker){
 	marker.addListener('click', function() {
-		console.log(marker.title);
 		populateIndoWindow(marker);
 	})
 
 }
 
+
+function broughtIn(chosenHotspot){
+  alert(chosenHotspot.title);
+}
+
 // Adds a marker to the map and push to the array.
-function addOneMarker(location) {
+function addOneMarker() {
     var marker = new google.maps.Marker({
       position: this.chosenHotspot().location,
       title: this.chosenHotspot().title,
@@ -55,15 +59,16 @@ function addOneMarker(location) {
     });
     markers.push(marker);
     populateIndoWindow(marker);
+
 }
 
 // Adds a marker to the map and push to the array after clearing map of other markers.
-function onlyOneMarker() {
+function listedMarkers(chosenHotspot) {
 	deleteMarkers();
 	var marker = new google.maps.Marker({
-		position: this.chosenHotspot().location,
-    title: this.chosenHotspot().title,
-    id: this.chosenHotspot().id,
+		position: chosenHotspot.location,
+    title: chosenHotspot.title,
+    id: chosenHotspot.id,
     animation: google.maps.Animation.DROP,
     map: map
 	});
@@ -73,6 +78,25 @@ function onlyOneMarker() {
   markers.push(marker);
   populateIndoWindow(marker);
 }
+
+
+// Adds a marker to the map and push to the array after clearing map of other markers.
+function onlyOneMarker() {
+  deleteMarkers();
+  var marker = new google.maps.Marker({
+    position: this.chosenHotspot().location,
+    title: this.chosenHotspot().title,
+    id: this.chosenHotspot().id,
+    animation: google.maps.Animation.DROP,
+    map: map
+  });
+  marker.addListener('click', function() {
+      console.log(marker.title);
+    });
+  markers.push(marker);
+  populateIndoWindow(marker);
+}
+
 
 // Adds am infowindow to the map and push to the array.
 function populateIndoWindow(marker){
