@@ -115,8 +115,8 @@ function populateIndoWindow(marker){
       		var infowindow = new google.maps.InfoWindow();
       		infowindow.open(map, marker);
       		infowindow.setContent('<b>' + marker.title + '</b><p>' +
-					     		wikiDesc +
-								'<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
+					     		wikiDesc + '<p>' +
+								'Wikipedia: ' + '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
 								);
 			clearTimeout(wikiRequestTimeout);
 			// Make sure the marker property is cleared if the infowindow is closed.
