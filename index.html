@@ -7,7 +7,7 @@
   </head>
   <body>
     <div class="container">
-      <h3 class="instructions"> Customize Your Hotspots: </h3>
+      <div class="instructions"> Customize Your Hotspots: </div>
       <button data-bind="click: addMarkers">Show All Markers</button>
       <button data-bind="click: deleteMarkers">Close Markers</button>
       <p>
@@ -19,7 +19,7 @@
                          event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
       </select>
       <p>
-      Remove markers one at a time:
+      Remove this marker:
       <select data-bind="options: hotSpots,
                          optionsText: 'title',
                          value: trashSpot,
