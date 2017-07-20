@@ -3,63 +3,42 @@
   <head>
     <title>Neighborhood Map</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="container">
-      <div class="instructions"> Customize Your Hotspots: </div>
-      <button data-bind="click: addMarkers">Show All Markers</button>
-      <button data-bind="click: deleteMarkers">Close Markers</button>
-      <p>
-      Add markers one at a time:
-      <select data-bind="options: hotSpots,
+        <div class="instructions"> Customize Your Hotspots: </div>
+        <button data-bind="click: addMarkers">Show All Markers</button>
+        <button data-bind="click: deleteMarkers">Close Markers</button>
+      
+          <select data-bind="options: hotSpots,
                          optionsText: 'title',
                          value: chosenHotspot,
-                         optionsCaption: 'Add..',
+                         optionsCaption: 'Add this marker...',
                          event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
-      </select>
-      <p>
-      Remove this marker:
-      <select data-bind="options: hotSpots,
+          </select>
+
+  
+        <select data-bind="options: hotSpots,
                          optionsText: 'title',
                          value: trashSpot,
-                         optionsCaption: 'Remove...',
+                         optionsCaption: 'Remove this marker...',
                          event:{ change: deleteOneMarker}" class="location-list"> Delete Markers
-      </select><br>
+        </select><br>
+
       <p>
-      
+        <div class="list-markers">
+          Show Me:
+            <ul data-bind="foreach: { data: hotSpots, as: 'chosenHotspot', with: 'map' }" class="hotspotList"> 
+              <li data-bind="text: title, event:{ click: listedMarkers} " class="hotspotItems"></li>
+            </ul>   
+        </div>
     </div>
-    <div class="list-markers">
-    <h3 class="list-text">Show Me:</h3>
-      <ul data-bind="foreach: { data: hotSpots, as: 'chosenHotspot', with: 'map' }" class="hotspotList"> 
-       <li data-bind="text: title, event:{ click: listedMarkers} " class="hotspotItems"></li>
-      </ul>   
-    </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <p>
 
 
     <div id="map"></div>

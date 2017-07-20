@@ -1,31 +1,37 @@
-.list-text {
-  width: 19%;
-  padding-left: 3%;
-}
-
-#map {
-  top: 0%;
-  height: 100%;
-  left: 25%;
-  position: absolute;
-  right: 0px;
-}
-
-
 html, body {
-  height: 100%;
+  max-width: 100%;
   margin: 0;
   padding: 0;
   background-color: #2d3c49;
   color: #7d97ad;
   font-size: 18px;
+  display: flex;
 }
 
-.hotspotItems {
-  width: 21.5%;
-  position: relative;
-  border: 1px solid #999;
+* {
+    box-sizing: border-box;
+}
 
+ul {
+  list-style-type: none;
+}
+
+.list-text {
+  display: flex;
+}
+
+#map {
+  top: 60%;
+  height: 100%;
+  left: 0%;
+  position: absolute;
+  right: 0px;
+}
+
+
+
+.hotspotItems {
+  border: 1px solid #999;
   margin-top: 0.5%;
   font-weight: bolder;
   font-size: 22px;
@@ -34,43 +40,64 @@ html, body {
   padding-bottom: 1%;
   text-align: center;
   background-color: #9cd295;
-}
-
-.hotspotList {
-
-}
-
-
-ul {
-  list-style-type: none;
+  margin-left: -5%;
+  width: 100%;
 }
 
 .container {
-  width: 17%;
+  max-height: 100%;
   position: relative;
   border: 1px solid #999;
-  margin-right: 2%;
-  margin-left: 2%;
-  margin-top: 2%;
-  padding-left: 2%;
-  padding-right: 2%;
   padding-bottom: 2%;
   text-align: center;
   background-color: #9cd295;
   color: black;
   font-size: 22px;
   font-weight: bolder;
-
 }
 
 .currentMarkers {
-  max-width: 17%;
   border: 1px solid #999;
-  margin-right: 2%;
-  margin-left: 2%;
   margin-top: 5%;
-  padding-left: 2%;
-  padding-right: 2%;
   padding-bottom: 2%;
   text-align: center;
+}
+
+
+@media only screen and (min-width: 768px) {
+  #map {
+    top: 40%;
+  }
+
+  .container {
+    margin-left: 10%;
+  }
+
+  .hotspotItems {
+    margin-top: 0.5%;
+  }
+
+}
+
+@media only screen and (min-width: 1000px) {
+  #map {
+    top: 0%;
+    left: 25%;
+  }
+
+  .container {
+    position: relative;
+    margin-left: 0%;
+    height: 100%;
+    max-width: 39.5%;
+  }
+
+  .hotspotItems {
+    margin-top: 0.5%;
+    font-size: 14px;
+    width: 95%
+  }
+
+ 
+
 }
