@@ -2,7 +2,7 @@ html, body {
   max-width: 100%;
   margin: 0;
   padding: 0;
-  background-color: #2d3c49;
+  background-color: #9cd295;
   color: #7d97ad;
   font-size: 18px;
   display: flex;
@@ -39,7 +39,7 @@ ul {
   padding-top: 1%;
   padding-bottom: 1%;
   text-align: center;
-  background-color: #9cd295;
+  background-color: #2d3c49;
   margin-left: -5%;
   width: 100%;
 }
@@ -70,7 +70,9 @@ ul {
   }
 
   .container {
-    margin-left: 10%;
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 5%;
   }
 
   .hotspotItems {
@@ -98,6 +100,6 @@ ul {
     width: 95%
   }
 
- 
+
 
 }
