@@ -139,6 +139,11 @@ ul {
     margin-top: 0.5%;
     font-size: 14px;
     width: 140%;
+    margin-left: 0%;
+  }
+
+  .dropdowns {
+    margin-left: -5%;
   }
 
   .show-me {
