@@ -108,6 +108,9 @@ ul {
     left: 25%;
   }
 
+  .instructions {
+    margin-left: -10%;
+  }
   .container {
     position: relative;
     margin-top: 10%;
@@ -116,11 +119,16 @@ ul {
     max-width: 39.5%;
   }
 
+  .buttons {
+    margin-left: -10%;
+    margin-bottom: -15%;
+  }
   .dropdowns {
     margin-left: -17%;
   }
 
   .show-me {
+    margin-top: -10%;
     margin-bottom: -15%;
   }
   .hotspotItems {
