@@ -11,28 +11,28 @@
         <div class="instructions"> Customize Your Hotspots: </div>
         <button data-bind="click: addMarkers">Show All Markers</button>
         <button data-bind="click: deleteMarkers">Close Markers</button>
-      
-          <select data-bind="options: hotSpots,
+        <p class="dropdowns">
+          <select class="add-one" data-bind="options: hotSpots,
                          optionsText: 'title',
                          value: chosenHotspot,
                          optionsCaption: 'Add this marker...',
                          event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
           </select>
 
-  
-        <select data-bind="options: hotSpots,
+
+        <select class="remove-one" data-bind="options: hotSpots,
                          optionsText: 'title',
                          value: trashSpot,
                          optionsCaption: 'Remove this marker...',
                          event:{ change: deleteOneMarker}" class="location-list"> Delete Markers
         </select><br>
-
+      </p>
       <p>
         <div class="list-markers">
-          Show Me:
-            <ul data-bind="foreach: { data: hotSpots, as: 'chosenHotspot', with: 'map' }" class="hotspotList"> 
+          <div class="show-me">Show Me:</div>
+            <ul data-bind="foreach: { data: hotSpots, as: 'chosenHotspot', with: 'map' }" class="hotspotList">
               <li data-bind="text: title, event:{ click: listedMarkers} " class="hotspotItems"></li>
-            </ul>   
+            </ul>
         </div>
     </div>
 

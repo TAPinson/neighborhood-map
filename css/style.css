@@ -42,12 +42,24 @@ ul {
   background-color: #2d3c49;
   margin-left: -5%;
   width: 100%;
+  border-radius: 5px;
 }
+
+.hotspotItems:hover {
+  background-color: #3e8e41
+}
+
+.hotspotItems:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
 
 .container {
   max-height: 100%;
   position: relative;
-  border: 1px solid #999;
   padding-bottom: 2%;
   text-align: center;
   background-color: #9cd295;
@@ -71,8 +83,7 @@ ul {
 
   .container {
     width: 100%;
-    padding-left: 10%;
-    padding-right: 5%;
+    margin-left: 45%;
   }
 
   .hotspotItems {
@@ -97,9 +108,36 @@ ul {
   .hotspotItems {
     margin-top: 0.5%;
     font-size: 14px;
-    width: 95%
+    width: 95%;
+  }
+}
+
+
+@media only screen and (min-width: 1400px) {
+  #map {
+    top: 0%;
+    left: 25%;
   }
 
+  .container {
+    position: relative;
+    margin-left: 15%;
+    height: 100%;
+    max-width: 39.5%;
+  }
 
+  .hotspotItems {
+    margin-top: 0.5%;
+    font-size: 14px;
+    width: 140%;
+  }
 
+.show-me {
+  margin-left: -20%;
+  margin-bottom: -5%;
+}
+
+  .list-markers {
+    margin-left: -35%;
+  }
 }
