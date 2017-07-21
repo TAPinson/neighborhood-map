@@ -20,8 +20,11 @@ ul {
   display: flex;
 }
 
+.instructions {
+  padding-top: 2%;
+}
 #map {
-  top: 60%;
+  top: 65%;
   height: 100%;
   left: 0%;
   position: absolute;
@@ -78,7 +81,7 @@ ul {
 
 @media only screen and (min-width: 768px) {
   #map {
-    top: 40%;
+    top: 42%;
   }
 
   .container {
@@ -92,7 +95,7 @@ ul {
 
 }
 
-@media only screen and (min-width: 1000px) {
+@media only screen and (min-width: 1024px) {
   #map {
     top: 0%;
     left: 25%;
@@ -100,15 +103,21 @@ ul {
 
   .container {
     position: relative;
-    margin-left: 0%;
+    margin-top: 10%;
+    margin-left: 17%;
     height: 100%;
     max-width: 39.5%;
   }
 
+  .dropdowns {
+    margin-left: -17%;
+  }
+
   .hotspotItems {
+    margin-left: -67%;
     margin-top: 0.5%;
-    font-size: 14px;
-    width: 95%;
+    font-size: 16px;
+    width: 190%;
   }
 }
 
@@ -132,10 +141,14 @@ ul {
     width: 140%;
   }
 
-.show-me {
-  margin-left: -20%;
-  margin-bottom: -5%;
-}
+  .show-me {
+    margin-left: -20%;
+    margin-bottom: -5%;
+  }
+
+  .instructions {
+    margin-left: 15%;
+  }
 
   .list-markers {
     margin-left: -35%;
