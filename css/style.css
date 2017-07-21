@@ -87,7 +87,7 @@ ul {
 
 @media only screen and (min-width: 768px) {
   #map {
-    top: 48%;
+    top: 40%;
   }
 
   .container {
@@ -98,6 +98,15 @@ ul {
 
   .hotspotItems {
     margin-top: 0.5%;
+  }
+
+  .dropdowns {
+    margin-top: -10%;
+  }
+
+  .show-me {
+    margin-top: -5%;
+    margin-bottom: 1%;
   }
 
 }
@@ -124,6 +133,7 @@ ul {
     margin-bottom: -15%;
   }
   .dropdowns {
+    margin-top: 15%;
     margin-left: -17%;
   }
 
@@ -140,7 +150,7 @@ ul {
 }
 
 
-@media only screen and (min-width: 1400px) {
+@media only screen and (min-width: 1440px) {
   #map {
     top: 0%;
     left: 25%;
@@ -174,12 +184,13 @@ ul {
     margin-top: 0.5%;
     font-size: 14px;
     width: 140%;
-    margin-left: -5%;
+    margin-left: 0%;
   }
 
   .show-me {
     text-align: left;
     padding-left: 35%;
+    padding-top: 10%;
   }
 
   .dropdowns {
@@ -208,5 +219,8 @@ ul {
 
   #map {
     left: 17%;
+  }
+  .hotspotItems {
+    margin-left: -5%;
   }
 }
