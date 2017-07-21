@@ -36,7 +36,7 @@ function addMarkers() {
 function markerListener(marker){
 	marker.addListener('click', function() {
 		populateIndoWindow(marker);
-	})
+	});
 
 }
 
@@ -122,7 +122,7 @@ function populateIndoWindow(marker){
 			// Make sure the marker property is cleared if the infowindow is closed.
       		infowindow.addListener('closeclick',function(){
       			infowindow.setMarker = null;
-      		})
+      		});
       	infowindows.push(infowindow);
       	console.log(infowindows.length);
    	  	console.log(infowindows[0]);
@@ -166,12 +166,13 @@ function deleteMarkers() {
 
 function deleteOneMarker() {
   for (var i = 0; i < markers.length; i++) {
+
     if (markers[i].title == this.trashSpot().title){
       setMapOnAll(null);
     	var index = markers.indexOf(markers[i]);
  	  	markers.splice(index, 1);
- 	  	for (var i = 0; i < markers.length; i++){
- 	  		markers[i].setMap(map);
+ 	  	for (var j = 0; j < markers.length; j++){
+ 	  		markers[j].setMap(map);
  	  	}
  	  }
  	}
