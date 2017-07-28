@@ -79,6 +79,13 @@ ul {
   text-align: center;
 }
 
+.KOstuff {
+  position: absolute;
+  left: 2%;
+  top: 70%;
+}
+
+
 @media only screen and (min-width: 414px) {
   #map {
     top: 59%;

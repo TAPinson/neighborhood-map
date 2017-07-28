@@ -30,6 +30,8 @@ function addMarkers() {
       	});
     	markerListener(marker);
     	markers.push(marker);
+			
+
     }
 }
 
@@ -124,8 +126,6 @@ function populateIndoWindow(marker){
       			infowindow.setMarker = null;
       		});
       	infowindows.push(infowindow);
-      	console.log(infowindows.length);
-   	  	console.log(infowindows[0]);
    	  	if (infowindows.length > 1) {
    	  		closeAllInfoWindows(marker);
    	  	}
