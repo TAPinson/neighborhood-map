@@ -1,5 +1,6 @@
 markers = [];
 
+
 function viewModel() {
 	var map;
 	infowindows = [];
@@ -13,7 +14,5 @@ function viewModel() {
 		];
   	this.trashSpot = ko.observable()
   	this.chosenHotspot = ko.observable();
-
     markers=ko.observableArray([]);
-
 }

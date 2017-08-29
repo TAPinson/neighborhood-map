@@ -3,7 +3,7 @@ ko.applyBindings(new viewModel());
 
 
 var googleRequestTimeout = setTimeout(function(){
-	alert("Communication with Google has failed.");
+  alert("Communication with Google has failed.");
 }, 6000);
 
 function initMap() {
@@ -12,34 +12,30 @@ function initMap() {
     zoom: 12,
     center: nashville,
   });
-
   addMarkers();
 	clearTimeout(googleRequestTimeout);
 }
 
 // Adds a marker to the map and push to the array.
 function addMarkers() {
-	deleteMarkers();
-  	for (var i = 0; i < hotSpots.length; i++){
-    	var marker = new google.maps.Marker({
-      		position: hotSpots[i].location,
-      		title: hotSpots[i].title,
-      		id: hotSpots[i].id,
-      		animation: google.maps.Animation.DROP,
-      		map: map
-      	});
-    	markerListener(marker);
-    	markers.push(marker);
-			
-
-    }
+  deleteMarkers();
+  for (var i = 0; i < hotSpots.length; i++){
+    var marker = new google.maps.Marker({
+      position: hotSpots[i].location,
+      title: hotSpots[i].title,
+      id: hotSpots[i].id,
+      animation: google.maps.Animation.DROP,
+      map: map
+    });
+    markerListener(marker);
+    markers.push(marker);
+  }
 }
 
 function markerListener(marker){
-	marker.addListener('click', function() {
-		populateIndoWindow(marker);
-	});
-
+  marker.addListener('click', function() {
+    populateIndoWindow(marker);
+  });
 }
 
 
@@ -62,8 +58,8 @@ function addOneMarker() {
     markers.push(marker);
     //this.markers.push(marker);
     populateIndoWindow(marker);
-
 }
+
 
 // Adds a marker to the map and push to the array after clearing map of other markers.
 function listedMarkers(chosenHotspot) {
@@ -94,8 +90,8 @@ function onlyOneMarker() {
     map: map
   });
   marker.addListener('click', function() {
-      console.log(marker.title);
-    });
+    console.log(marker.title);
+  });
   markers.push(marker);
   populateIndoWindow(marker);
 }
@@ -109,30 +105,31 @@ function populateIndoWindow(marker){
 	}, 6000);
 	$.ajax({
 		url: 'http://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback',
-    	dataType: "jsonp",
-    	jsonp: "callback",
-    	success: function( data ) {
-    		var wikiTitle = data[1];
-      		var wikiDesc = data[2];
-      		var wikiMarkerUrl = data[3];
-      		var infowindow = new google.maps.InfoWindow();
-      		infowindow.open(map, marker);
-      		infowindow.setContent('<b>' + marker.title + '</b><p>' +
-					     		wikiDesc + '<p>' +
-								'Wikipedia: ' + '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
-								);
+    dataType: "jsonp",
+    jsonp: "callback",
+    success: function( data ) {
+      var wikiTitle = data[1];
+      var wikiDesc = data[2];
+      var wikiMarkerUrl = data[3];
+      var infowindow = new google.maps.InfoWindow();
+      infowindow.open(map, marker);
+      infowindow.setContent('<b>' + marker.title + '</b><p>' +
+					     		          wikiDesc + '<p>' +
+								            'Wikipedia: ' + '<a href=' + wikiMarkerUrl + '>' + wikiTitle + '</a>'
+                            );
 			clearTimeout(wikiRequestTimeout);
 			// Make sure the marker property is cleared if the infowindow is closed.
-      		infowindow.addListener('closeclick',function(){
-      			infowindow.setMarker = null;
-      		});
+      infowindow.addListener('closeclick',function(){
+        infowindow.setMarker = null;
+      });
       	infowindows.push(infowindow);
    	  	if (infowindows.length > 1) {
-   	  		closeAllInfoWindows(marker);
-   	  	}
+          closeAllInfoWindows(marker);
+        }
    	  }
-   	});
+    });
 }
+
 
 function closeAllInfoWindows(marker) {
 	for (var i=0;i<infowindows.length;i++) {
@@ -142,6 +139,7 @@ function closeAllInfoWindows(marker) {
   	populateIndoWindow(marker);
   }
 
+
 // Sets the map on all markers in the array.
 function setMapOnAll(map) {
   for (var i = 0; i < markers.length; i++) {
@@ -149,33 +147,36 @@ function setMapOnAll(map) {
   }
 }
 
+
 // Removes the markers from the map, but keeps them in the array.
 function clearMarkers() {
   setMapOnAll(null);
 }
+
 
 // Shows any markers currently in the array.
 function showMarkers() {
   setMapOnAll(map);
 }
 
+
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
   clearMarkers();
-  
+  //markers = [];
   markers([]);
 }
 
+
 function deleteOneMarker() {
   for (var i = 0; i < markers.length; i++) {
-
     if (markers[i].title == this.trashSpot().title){
       setMapOnAll(null);
     	var index = markers.indexOf(markers[i]);
  	  	markers.splice(index, 1);
  	  	for (var j = 0; j < markers.length; j++){
  	  		markers[j].setMap(map);
- 	  	}
- 	  }
- 	}
- }
+      }
+    }
+  }
+}
