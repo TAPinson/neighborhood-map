@@ -21,19 +21,12 @@
                          event:{ change: addOneMarker}" class="location-list"> LOCATION DROPDOWN BOX
           </select>
 
-
-          <select class="remove-one" data-bind="options: hotSpots,
-                         optionsText: 'title',
-                         value: trashSpot,
-                         optionsCaption: 'Remove this marker...',
-                         event:{ change: deleteOneMarker}" class="location-list"> Delete Markers
-          </select><br>
       </p>
 
         <div class="list-markers">
           <div class="show-me">Showing:</div>
             <ul data-bind="foreach: { data: markers, as: 'chosenHotspot', with: 'map' }" class="hotspotList">
-              <li data-bind="text: title, event:{ click: listedMarkers} " class="hotspotItems"></li>
+              <li data-bind="text: title" class="hotspotItems"></li>
             </ul>
         </div>
     </div>
