@@ -35,9 +35,19 @@ function addMarkers() {
 function markerListener(marker){
   marker.addListener('click', function() {
     populateIndoWindow(marker);
+    toggleBounce(marker);
+    //marker.setAnimation(google.maps.Animation.BOUNCE)
   });
 }
 
+
+function toggleBounce(marker) {
+        if (marker.getAnimation() !== null) {
+          marker.setAnimation(null);
+        } else {
+          marker.setAnimation(google.maps.Animation.DROP);
+        }
+      }
 
 function broughtIn(chosenHotspot){
   alert(chosenHotspot.title);
@@ -148,15 +158,14 @@ function setMapOnAll(map) {
 }
 
 
-// Removes the markers from the map, but keeps them in the array.
-function clearMarkers() {
-  setMapOnAll(null);
-}
-
-
 // Shows any markers currently in the array.
 function showMarkers() {
   setMapOnAll(map);
+}
+
+// Removes the markers from the map, but keeps them in the array.
+function clearMarkers() {
+  setMapOnAll(null);
 }
 
 
@@ -164,6 +173,7 @@ function showMarkers() {
 function deleteMarkers() {
   clearMarkers();
   //markers = [];
+  //this.markers = [];
   markers([]);
 }
 
