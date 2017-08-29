@@ -60,7 +60,7 @@ function addOneMarker() {
      	console.log(marker.title);
     });
     markers.push(marker);
-    this.markers.push(marker);
+    //this.markers.push(marker);
     populateIndoWindow(marker);
 
 }
@@ -163,7 +163,7 @@ function showMarkers() {
 function deleteMarkers() {
   clearMarkers();
   
-  //viewModel.this.markers([]);
+  markers([]);
 }
 
 function deleteOneMarker() {

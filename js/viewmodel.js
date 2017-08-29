@@ -14,6 +14,6 @@ function viewModel() {
   	this.trashSpot = ko.observable()
   	this.chosenHotspot = ko.observable();
 
-    this.markers=ko.observableArray([]);
+    markers=ko.observableArray([]);
 
 }
