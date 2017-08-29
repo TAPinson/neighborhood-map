@@ -60,6 +60,7 @@ function addOneMarker() {
      	console.log(marker.title);
     });
     markers.push(marker);
+    this.markers.push(marker);
     populateIndoWindow(marker);
 
 }
@@ -161,7 +162,8 @@ function showMarkers() {
 // Deletes all markers in the array by removing references to them.
 function deleteMarkers() {
   clearMarkers();
-  markers = [];
+  
+  //viewModel.this.markers([]);
 }
 
 function deleteOneMarker() {
